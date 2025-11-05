@@ -1,0 +1,111 @@
+---
+// ═══════════════════════════════════════════════════════════
+// ECOFUNDRIVE V2.0 - CATEGORY INDEX: GOLF (EN)
+// ═══════════════════════════════════════════════════════════
+
+import PageLayout from '../../layouts/PageLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import ContentSection from '../../components/ContentSection.astro';
+import CTA from '../../components/CTA.astro';
+import Schemas from '../../components/Schemas.astro';
+
+import { filterByCategory, getCategorySlug } from '../../lib/keywords';
+
+const lang = 'en';
+const category = 'golf';
+const categorySlug = getCategorySlug(category, lang);
+
+const golfPages = filterByCategory(lang, category);
+const sortedGolf = golfPages.sort((a, b) => {
+  if (a.authority !== b.authority) return b.authority ? 1 : -1;
+  return a.location.localeCompare(b.location);
+});
+
+const breadcrumbs = [
+  { label: 'Home', href: '/en' },
+  { label: 'Golf' }
+];
+---
+
+<PageLayout
+  title="Best Golf Courses French Riviera | Complete Guide"
+  metaTitle="Premium Golf Courses French Riviera | Monaco, Nice, Cannes"
+  metaDescription="Discover the best golf courses on the French Riviera. Complete guide to prestigious courses, 18-hole golf and private clubs in Monaco, Nice, Cannes, Grasse."
+  lang={lang}
+  canonical={`https://ecofundrive.com/en/${categorySlug}`}
+>
+  <Hero
+    title="French Riviera Golf Courses"
+    subtitle={`Discover ${sortedGolf.length} exceptional golf courses on the French Riviera. Complete guide by David Chemla, Google Local Guide Level 6.`}
+    image="/images/hero/shared/homepage-riviera-1920w.webp"
+  />
+
+  <Breadcrumb items={breadcrumbs} lang={lang} />
+
+  <ContentSection alignment="center">
+    <h2>Best Golf Courses Guide</h2>
+    <p style="font-size: 1.1rem; max-width: 800px; margin: 0 auto;">
+      Prestigious courses, private clubs and panoramic golf courses. 
+      Discover our selection of the most beautiful golf courses on the French Riviera, from Monaco to Grasse.
+    </p>
+  </ContentSection>
+
+  <ContentSection>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; margin-top: 2rem;">
+      {sortedGolf.map((golf) => (
+        <a 
+          href={`/${golf.language}/${golf.keyword}`}
+          style="background: white; padding: 2rem; border-radius: 12px; border: 1px solid var(--border); text-decoration: none; color: inherit; transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column;"
+          onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.1)'"
+          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'"
+        >
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+            <span style="font-size: 0.85rem; padding: 0.25rem 0.75rem; background: {golf.mode === 'B' ? 'var(--accent)' : 'var(--accent-blue)'}; color: white; border-radius: 4px; font-weight: 600;">
+              {golf.mode === 'B' ? 'VTC BOOKING' : 'GUIDE'}
+            </span>
+            {golf.authority && (
+              <span style="font-size: 0.85rem; color: #FFD700;" title="Authority page">⭐</span>
+            )}
+          </div>
+          
+          <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem; color: var(--text); line-height: 1.3;">
+            {golf.keyword.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+          </h3>
+          
+          <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1rem; flex-grow: 1;">
+            📍 {golf.location}
+          </p>
+          
+          <div style="font-size: 0.9rem; color: var(--accent); font-weight: 600;">
+            Learn more →
+          </div>
+        </a>
+      ))}
+    </div>
+  </ContentSection>
+
+  <CTA
+    title="VTC transfer to golf courses"
+    subtitle="Premium shuttle service to all golf courses on the French Riviera. Golf club transport included."
+    location="end"
+    lang={lang}
+  />
+
+  <Schemas
+    type="article"
+    data={{
+      title: "Best Golf Courses French Riviera | Complete Guide",
+      description: "Discover the best golf courses on the French Riviera. Complete guide to prestigious courses.",
+      datePublished: "2024-01-01T00:00:00Z",
+      dateModified: new Date().toISOString()
+    }}
+  />
+
+  <Schemas type="organization" />
+
+  <Schemas
+    type="breadcrumb"
+    data={{ breadcrumbs }}
+  />
+</PageLayout>

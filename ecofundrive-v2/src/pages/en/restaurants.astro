@@ -1,0 +1,111 @@
+---
+// ═══════════════════════════════════════════════════════════
+// ECOFUNDRIVE V2.0 - CATEGORY INDEX: RESTAURANTS (EN)
+// ═══════════════════════════════════════════════════════════
+
+import PageLayout from '../../layouts/PageLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import ContentSection from '../../components/ContentSection.astro';
+import CTA from '../../components/CTA.astro';
+import Schemas from '../../components/Schemas.astro';
+
+import { filterByCategory, getCategorySlug } from '../../lib/keywords';
+
+const lang = 'en';
+const category = 'restaurant';
+const categorySlug = getCategorySlug(category, lang);
+
+const restaurants = filterByCategory(lang, category);
+const sortedRestaurants = restaurants.sort((a, b) => {
+  if (a.authority !== b.authority) return b.authority ? 1 : -1;
+  return a.location.localeCompare(b.location);
+});
+
+const breadcrumbs = [
+  { label: 'Home', href: '/en' },
+  { label: 'Restaurants' }
+];
+---
+
+<PageLayout
+  title="Best Restaurants French Riviera | Gourmet Guide"
+  metaTitle="Gourmet Restaurants French Riviera | Monaco, Nice, Cannes"
+  metaDescription="Discover the best restaurants on the French Riviera. Complete guide to Michelin-starred restaurants, gourmet dining and hidden gems in Monaco, Nice, Cannes, Saint-Tropez."
+  lang={lang}
+  canonical={`https://ecofundrive.com/en/${categorySlug}`}
+>
+  <Hero
+    title="French Riviera Restaurants"
+    subtitle={`Discover ${sortedRestaurants.length} exceptional restaurants on the French Riviera. Complete guide by David Chemla, Google Local Guide Level 6.`}
+    image="/images/hero/shared/homepage-riviera-1920w.webp"
+  />
+
+  <Breadcrumb items={breadcrumbs} lang={lang} />
+
+  <ContentSection alignment="center">
+    <h2>Best Restaurants Guide</h2>
+    <p style="font-size: 1.1rem; max-width: 800px; margin: 0 auto;">
+      From Monaco to Saint-Tropez, discover a curated selection of the finest restaurants on the French Riviera. 
+      Michelin-starred establishments, authentic bistros and secret addresses tested and approved by our local expert.
+    </p>
+  </ContentSection>
+
+  <ContentSection>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; margin-top: 2rem;">
+      {sortedRestaurants.map((restaurant) => (
+        <a 
+          href={`/${restaurant.language}/${restaurant.keyword}`}
+          style="background: white; padding: 2rem; border-radius: 12px; border: 1px solid var(--border); text-decoration: none; color: inherit; transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column;"
+          onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.1)'"
+          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'"
+        >
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+            <span style="font-size: 0.85rem; padding: 0.25rem 0.75rem; background: {restaurant.mode === 'B' ? 'var(--accent)' : 'var(--accent-blue)'}; color: white; border-radius: 4px; font-weight: 600;">
+              {restaurant.mode === 'B' ? 'VTC BOOKING' : 'GUIDE'}
+            </span>
+            {restaurant.authority && (
+              <span style="font-size: 0.85rem; color: #FFD700;" title="Authority page">⭐</span>
+            )}
+          </div>
+          
+          <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem; color: var(--text); line-height: 1.3;">
+            {restaurant.keyword.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+          </h3>
+          
+          <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1rem; flex-grow: 1;">
+            📍 {restaurant.location}
+          </p>
+          
+          <div style="font-size: 0.9rem; color: var(--accent); font-weight: 600;">
+            Learn more →
+          </div>
+        </a>
+      ))}
+    </div>
+  </ContentSection>
+
+  <CTA
+    title="Need a driver for your gourmet outings?"
+    subtitle="Enjoy our Tesla VTC services for your reservations at the best restaurants on the French Riviera."
+    location="end"
+    lang={lang}
+  />
+
+  <Schemas
+    type="article"
+    data={{
+      title: "Best Restaurants French Riviera | Gourmet Guide",
+      description: "Discover the best restaurants on the French Riviera. Complete guide to Michelin-starred and gourmet restaurants.",
+      datePublished: "2024-01-01T00:00:00Z",
+      dateModified: new Date().toISOString()
+    }}
+  />
+
+  <Schemas type="organization" />
+
+  <Schemas
+    type="breadcrumb"
+    data={{ breadcrumbs }}
+  />
+</PageLayout>
