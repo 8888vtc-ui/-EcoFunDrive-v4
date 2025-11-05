@@ -15,19 +15,28 @@ const content = lang === 'fr' ? {
   company: {
     title: 'ECOFUNDRIVE',
     items: [
-      { label: 'À propos', href: '/fr/a-propos' },
+      { label: 'À propos', href: '/fr/auteur' },
       { label: 'Notre flotte Tesla', href: '/fr/flotte-tesla' },
       { label: 'Nos services', href: '/fr/services' },
-      { label: 'Zones desservies', href: '/fr/zones' }
+      { label: 'Plan du site', href: '/fr/plan-du-site' }
+    ]
+  },
+  guides: {
+    title: 'Guides Côte d\'Azur',
+    items: [
+      { label: 'Restaurants', href: '/fr/restaurants' },
+      { label: 'Hôtels', href: '/fr/hotels' },
+      { label: 'Plages', href: '/fr/plages' },
+      { label: 'Golf', href: '/fr/golf' },
+      { label: 'Yachts', href: '/fr/yachts' }
     ]
   },
   services: {
     title: 'Services VTC',
     items: [
-      { label: 'Transfert aéroport Nice', href: '/fr/vtc-aeroport-nice' },
-      { label: 'VTC Monaco', href: '/fr/vtc-monaco' },
-      { label: 'VTC Cannes', href: '/fr/vtc-cannes' },
-      { label: 'Mise à disposition', href: '/fr/mise-a-disposition' }
+      { label: 'Services VTC', href: '/fr/vtc' },
+      { label: 'Tarifs', href: '/fr/tarifs' },
+      { label: 'Contact', href: '/fr/contact' }
     ]
   },
   legal: {
@@ -50,19 +59,28 @@ const content = lang === 'fr' ? {
   company: {
     title: 'ECOFUNDRIVE',
     items: [
-      { label: 'About', href: '/en/about' },
+      { label: 'About', href: '/en/author' },
       { label: 'Tesla Fleet', href: '/en/tesla-fleet' },
       { label: 'Services', href: '/en/services' },
-      { label: 'Coverage Areas', href: '/en/areas' }
+      { label: 'Sitemap', href: '/en/sitemap' }
+    ]
+  },
+  guides: {
+    title: 'French Riviera Guides',
+    items: [
+      { label: 'Restaurants', href: '/en/restaurants' },
+      { label: 'Hotels', href: '/en/hotels' },
+      { label: 'Beaches', href: '/en/beaches' },
+      { label: 'Golf', href: '/en/golf' },
+      { label: 'Yachts', href: '/en/yachts' }
     ]
   },
   services: {
     title: 'VTC Services',
     items: [
-      { label: 'Nice Airport Transfer', href: '/en/nice-airport-transfer' },
-      { label: 'Monaco VTC', href: '/en/monaco-vtc' },
-      { label: 'Cannes VTC', href: '/en/cannes-vtc' },
-      { label: 'Hourly Service', href: '/en/hourly-service' }
+      { label: 'VTC Services', href: '/en/vtc' },
+      { label: 'Rates', href: '/en/rates' },
+      { label: 'Contact', href: '/en/contact' }
     ]
   },
   legal: {
@@ -94,7 +112,15 @@ const content = lang === 'fr' ? {
       ))}
     </div>
 
-    <!-- Column 2: Services -->
+    <!-- Column 2: Guides -->
+    <div class="footer-column">
+      <h3>{content.guides.title}</h3>
+      {content.guides.items.map(item => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </div>
+
+    <!-- Column 3: Services -->
     <div class="footer-column">
       <h3>{content.services.title}</h3>
       {content.services.items.map(item => (
@@ -102,7 +128,7 @@ const content = lang === 'fr' ? {
       ))}
     </div>
 
-    <!-- Column 3: Legal -->
+    <!-- Column 4: Legal -->
     <div class="footer-column">
       <h3>{content.legal.title}</h3>
       {content.legal.items.map(item => (
@@ -110,7 +136,7 @@ const content = lang === 'fr' ? {
       ))}
     </div>
 
-    <!-- Column 4: Contact -->
+    <!-- Column 5: Contact -->
     <div class="footer-column">
       <h3>{content.contact.title}</h3>
       <a href={`tel:${content.contact.phone}`}>{content.contact.phone}</a>
