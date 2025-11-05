@@ -4,6 +4,7 @@
 import keywordsTest from '../content/keywords/keywords-test.json';
 import keywordsSeed from '../content/keywords/keywords-15-test.json';
 import keywordsFull from '../content/keywords/keywords-70.json';
+import { siteConfig } from './config';
 
 export interface Keyword {
   id: number;
@@ -147,7 +148,7 @@ export function findRelated(
 }
 
 export function buildCanonical(lang: 'fr' | 'en', slug: string): string {
-  return `https://ecofundrive.com/${lang}/${slug}`;
+  return `${siteConfig.siteUrl}/${lang}/${slug}`;
 }
 
 export function exists(slug: string, lang: 'fr' | 'en'): boolean {
@@ -157,7 +158,17 @@ export function exists(slug: string, lang: 'fr' | 'en'): boolean {
 
 export function validateInternalLinks(links: Array<{ url: string; anchor: string; context: string }>): Array<{ url: string; anchor: string; context: string }> {
   return links.filter(link => {
-    const match = link.url.match(/^\/(fr|en)\/([^\/]+)/);
+    let url = link.url;
+    
+    if (url.startsWith(siteConfig.siteUrl)) {
+      url = url.replace(siteConfig.siteUrl, '');
+    }
+    
+    url = url.split('#')[0].split('?')[0];
+    
+    url = url.replace(/\/$/, '');
+    
+    const match = url.match(/^\/(fr|en)\/([^\/]+)/);
     if (!match) return false;
     
     const [, lang, slug] = match;

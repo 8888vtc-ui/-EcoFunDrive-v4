@@ -56,9 +56,7 @@ const breadcrumbs = [
       {sortedHotels.map((hotel) => (
         <a 
           href={`/${hotel.language}/${hotel.keyword}`}
-          style="background: white; padding: 2rem; border-radius: 12px; border: 1px solid var(--border); text-decoration: none; color: inherit; transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column;"
-          onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.1)'"
-          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'"
+          class="category-card"
         >
           <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
             <span style="font-size: 0.85rem; padding: 0.25rem 0.75rem; background: {hotel.mode === 'B' ? 'var(--accent)' : 'var(--accent-blue)'}; color: white; border-radius: 4px; font-weight: 600;">
@@ -109,3 +107,22 @@ const breadcrumbs = [
     data={{ breadcrumbs }}
   />
 </PageLayout>
+
+<style>
+  .category-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  }
+</style>

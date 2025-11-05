@@ -3,6 +3,8 @@
 // ═══════════════════════════════════════════════════════════
 
 export const siteConfig = {
+  siteUrl: import.meta.env.SITE_URL || 'https://ecofundrive.com',
+  
   // Entreprise
   company: {
     name: 'ECOFUNDRIVE',
