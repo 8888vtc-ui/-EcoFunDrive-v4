@@ -80,12 +80,25 @@ if (pageContent.internal_links && pageContent.internal_links.length > 0) {
 }
 
 // Find related pages for deterministic internal linking
-const relatedPages = findRelated(keyword, {
+let relatedPages = findRelated(keyword, {
   sameCategory: true,
   sameLocation: false,
-  modeBias: keyword.mode === 'A' ? 'B' : undefined, // Mode A pages should link to Mode B for conversions
+  modeBias: keyword.mode === 'A' ? 'B' : undefined,
   limit: 6
 });
+
+// Deduplicate related pages against AI-generated internal_links
+if (pageContent.internal_links && pageContent.internal_links.length > 0) {
+  const aiLinkSlugs = new Set(
+    pageContent.internal_links
+      .map(link => {
+        const match = link.url.match(/\/(fr|en)\/([^\/\?#]+)/);
+        return match ? match[2] : null;
+      })
+      .filter(Boolean)
+  );
+  relatedPages = relatedPages.filter(related => !aiLinkSlugs.has(related.keyword));
+}
 
 // Breadcrumb items
 const breadcrumbs = [
@@ -223,9 +236,7 @@ const optimizedMetaDescription = keyword.meta_description || pageContent.meta_de
         {relatedPages.map((related) => (
           <a 
             href={`/${related.language}/${related.keyword}`}
-            style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border); text-decoration: none; color: inherit; transition: transform 0.2s, box-shadow 0.2s;"
-            onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.1)'"
-            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'"
+            class="related-card"
           >
             <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
               <span style="font-size: 0.85rem; padding: 0.25rem 0.75rem; background: {related.mode === 'B' ? 'var(--accent)' : 'var(--accent-blue)'}; color: white; border-radius: 4px; font-weight: 600;">
@@ -302,3 +313,21 @@ const optimizedMetaDescription = keyword.meta_description || pageContent.meta_de
   <!-- 6. Service Schema -->
   <Schemas type="service" />
 </PageLayout>
+
+<style>
+  .related-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: block;
+  }
+  
+  .related-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  }
+</style>
