@@ -1,0 +1,20 @@
+{
+  "name": "ecofundrive-seo-deploy",
+  "version": "1.0.0",
+  "description": "Script de déploiement SEO automatique pour ECOFUNDRIVE V3",
+  "main": "deploy-seo.ts",
+  "scripts": {
+    "deploy:seo": "ts-node scripts/deploy-seo.ts",
+    "deploy:seo:dev": "ts-node scripts/deploy-seo.ts --env=development",
+    "deploy:seo:prod": "ts-node scripts/deploy-seo.ts --env=production",
+    "verify:seo": "curl -s https://ecofundrive.com/sitemap.xml | head -20",
+    "test:robots": "curl -s https://ecofundrive.com/robots.txt"
+  },
+  "keywords": ["seo", "deployment", "ecofundrive", "vtc"],
+  "author": "ECOFUNDRIVE",
+  "license": "MIT",
+  "devDependencies": {
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  }
+}

@@ -50,6 +50,55 @@ export interface GeneratedImage {
   model: string;
 }
 
+// Types pour les pages SEO
+export interface PageSEO {
+  url: string;
+  title?: string;
+  description?: string;
+  keywords?: string[];
+  lastModified?: string;
+  changeFrequency?: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+  priority?: number;
+  images?: PageImage[];
+  noIndex?: boolean;
+  noFollow?: boolean;
+  noArchive?: boolean;
+  noSnippet?: boolean;
+  noImageIndex?: boolean;
+  notranslate?: boolean;
+  ogType?: 'website' | 'article' | 'product' | 'service';
+  ogImage?: string;
+  twitterCard?: 'summary' | 'summary_large_image' | 'app';
+  twitterImage?: string;
+  imageAlt?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  section?: string;
+  schemaType?: 'WebPage' | 'LocalBusiness' | 'Service' | 'Article';
+  queryParams?: Record<string, string>;
+  languages?: string[];
+}
+
+export interface PageImage {
+  url: string;
+  title?: string;
+  caption?: string;
+}
+
+// Types pour la configuration SEO fondamentale
+export interface SEOFundamentalConfig {
+  siteUrl: string;
+  defaultTitle: string;
+  defaultDescription: string;
+  ogImage: string;
+  twitterCard: string;
+  favicon: string;
+  language: string;
+  author: string;
+  keywords: string[];
+}
+
 // Types pour la validation SEO
 export interface SEOIssue {
   type: string;

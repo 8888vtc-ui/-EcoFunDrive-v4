@@ -1,0 +1,21 @@
+{
+  "name": "ecofundrive-seo-deploy",
+  "version": "1.0.0",
+  "description": "Script de déploiement SEO automatique pour ECOFUNDRIVE V3 - Sans dépendances",
+  "main": "deploy-seo-simple.js",
+  "scripts": {
+    "deploy:seo": "node scripts/deploy-seo-simple.js",
+    "deploy:seo:dev": "node scripts/deploy-seo-simple.js",
+    "deploy:seo:prod": "node scripts/deploy-seo-simple.js",
+    "test:deployment": "node scripts/test-deployment.js",
+    "verify:seo": "curl -s https://ecofundrive.com/sitemap.xml | head -20",
+    "test:robots": "curl -s https://ecofundrive.com/robots.txt",
+    "test:performance": "curl -s https://ecofundrive.com/scripts/analytics.js | head -10"
+  },
+  "keywords": ["seo", "deployment", "ecofundrive", "vtc", "tesla"],
+  "author": "ECOFUNDRIVE",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}

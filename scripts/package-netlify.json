@@ -1,0 +1,44 @@
+{
+  "name": "ecofundrive-netlify-updater",
+  "version": "1.0.0",
+  "description": "Système complet mise à jour incrémentale Netlify pour ECOFUNDRIVE V3 - 10 articles VTC + SEO auto",
+  "main": "netlify-update-system.js",
+  "scripts": {
+    "update:articles": "node scripts/netlify-update-system.js",
+    "update:test": "node scripts/netlify-update-system.js --dry-run",
+    "update:verbose": "node scripts/netlify-update-system.js --verbose",
+    "netlify:check": "node scripts/netlify-api-manager.js --check",
+    "netlify:info": "node scripts/netlify-api-manager.js --info",
+    "netlify:deploys": "node scripts/netlify-api-manager.js --deploys",
+    "deploy:seo": "node scripts/deploy-seo-simple.js",
+    "test:deployment": "node scripts/test-deployment.js",
+    "verify:seo": "curl -s https://ecofundrive.com/sitemap.xml | head -20",
+    "test:robots": "curl -s https://ecofundrive.com/robots.txt"
+  },
+  "keywords": [
+    "netlify", 
+    "seo", 
+    "incremental-update", 
+    "ecofundrive", 
+    "vtc", 
+    "tesla",
+    "articles",
+    "deployment"
+  ],
+  "author": "ECOFUNDRIVE",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ecofundrive/netlify-updater"
+  },
+  "config": {
+    "batchSize": 10,
+    "maxRetries": 3,
+    "deployTimeout": 300000
+  }
+}
