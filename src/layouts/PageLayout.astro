@@ -1,0 +1,133 @@
+---
+// ═══════════════════════════════════════════════════════════
+// ECOFUNDRIVE V3.0 - PAGE LAYOUT
+// Structure SEO optimisée pour génération dynamique
+// ═══════════════════════════════════════════════════════════
+
+interface Props {
+  title: string;
+  metaTitle?: string;
+  metaDescription: string;
+  lang?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  metaTitle = title,
+  metaDescription,
+  lang = 'fr',
+  canonical,
+  ogImage = '/images/og-default.jpg'
+} = Astro.props;
+
+const siteUrl = 'https://ecofundrive.com';
+const currentUrl = canonical || `${siteUrl}${Astro.url.pathname}`;
+
+// SEO Optimization: Handle both relative paths and absolute URLs for OG image
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+
+// Keep relative path for actual image src (works in both dev and prod)
+const imagePath = ogImage.startsWith('http') ? ogImage : ogImage;
+
+// SEO Optimization: Fix hreflang URLs - remove language prefix from pathname
+const pathWithoutLang = Astro.url.pathname.replace(/^\/(fr|en)\//, '/');
+const hreflangFr = `${siteUrl}/fr${pathWithoutLang}`;
+const hreflangEn = `${siteUrl}/en${pathWithoutLang}`;
+
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <title>{metaTitle}</title>
+  <meta name="description" content={metaDescription}>
+  <link rel="canonical" href={currentUrl}>
+
+  <!-- Preload Hero Image for LCP optimization -->
+  <link rel="preload" as="image" href={imagePath} fetchpriority="high">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={metaTitle}>
+  <meta property="og:description" content={metaDescription}>
+  <meta property="og:image" content={ogImageUrl}>
+  <meta property="og:url" content={currentUrl}>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ECOFUNDRIVE">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={metaTitle}>
+  <meta name="twitter:description" content={metaDescription}>
+  <meta name="twitter:image" content={ogImageUrl}>
+
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="fr" href={hreflangFr}>
+  <link rel="alternate" hreflang="en" href={hreflangEn}>
+  <link rel="alternate" hreflang="x-default" href={hreflangFr}>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <!-- Google Fonts Optimized (Critical CSS inlined, async load) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  </noscript>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- Performance -->
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.facebook.com">
+</head>
+
+<body>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- Header -->
+  <Header lang={lang} />
+
+  <!-- Main Content -->
+  <main>
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <Footer lang={lang} />
+
+  <!-- WhatsApp Float Button -->
+  <a
+    href="https://wa.me/33616552811"
+    class="whatsapp-float"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Contacter via WhatsApp"
+    data-track="whatsapp-float"
+  >
+    📱
+  </a>
+
+  <!-- Cookie Consent Banner V3 -->
+  <CookieConsent client:load />
+
+  <!-- External Scripts -->
+  <script src="/js/cookies.js" defer></script>
+  <script src="/js/tracking.js" defer></script>
+  <script src="/js/header.js" defer></script>
+  <script src="/js/scroll-progress.js" defer></script>
+  <script src="/js/main.js" defer></script>
+</body>
+</html>

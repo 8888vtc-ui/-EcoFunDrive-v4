@@ -1,0 +1,388 @@
+---
+// ═══════════════════════════════════════════════════════════
+// ECOFUNDRIVE V3.0 - HERO COMPONENT
+// Section hero optimisée pour génération dynamique
+// ═══════════════════════════════════════════════════════════
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  image?: string;
+  imageAlt?: string;
+  showCTA?: boolean;
+  ctaText?: string;
+  ctaLink?: string;
+  loading?: 'eager' | 'lazy';
+  fetchpriority?: 'high' | 'low' | 'auto';
+}
+
+const {
+  title,
+  subtitle,
+  image = '/images/hero/default-hero.webp',
+  imageAlt = 'VTC Tesla Premium Côte d\'Azur',
+  showCTA = true,
+  ctaText = 'Réserver maintenant',
+  ctaLink = 'https://wa.me/33616552811',
+  loading = 'eager',
+  fetchpriority = 'high'
+} = Astro.props;
+---
+
+<section class="hero-section">
+  <div class="hero-container">
+    <!-- Hero Image -->
+    <div class="hero-image">
+      <img
+        src={image}
+        alt={imageAlt}
+        loading={loading}
+        fetchpriority={fetchpriority}
+        class="hero-img"
+        width="1920"
+        height="1080"
+      />
+      <div class="hero-overlay"></div>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title">{title}</h1>
+        {subtitle && (
+          <p class="hero-subtitle">{subtitle}</p>
+        )}
+        
+        {showCTA && (
+          <div class="hero-cta">
+            <a 
+              href={ctaLink}
+              class="hero-cta-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-track="hero-cta-primary"
+            >
+              {ctaText}
+            </a>
+            <a 
+              href="/fr/tarifs"
+              class="hero-cta-secondary"
+              data-track="hero-cta-secondary"
+            >
+              Voir les tarifs
+            </a>
+          </div>
+        )}
+
+        <!-- Trust Indicators -->
+        <div class="hero-trust">
+          <div class="trust-item">
+            <span class="trust-icon">⭐</span>
+            <span class="trust-text">5.0/5</span>
+            <span class="trust-label">(26 avis)</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-icon">🚗</span>
+            <span class="trust-text">100%</span>
+            <span class="trust-label">Tesla</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-icon">🌱</span>
+            <span class="trust-text">0%</span>
+            <span class="trust-label">Émission</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-icon">🕐</span>
+            <span class="trust-text">24/7</span>
+            <span class="trust-label">Disponible</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+      <div class="scroll-dot"></div>
+      <span class="scroll-text">Scroll</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    margin-top: 80px; /* Header height */
+  }
+
+  .hero-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+
+  .hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.4) 50%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+    z-index: 2;
+  }
+
+  .hero-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+  }
+
+  .hero-text {
+    text-align: center;
+    max-width: 800px;
+    padding: 0 2rem;
+    animation: fadeInUp 1s ease-out;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-cta-primary {
+    background: #007bff;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+  }
+
+  .hero-cta-primary:hover {
+    background: #0056b3;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+  }
+
+  .hero-cta-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .hero-cta-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-3px);
+  }
+
+  .hero-trust {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .trust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .trust-icon {
+    font-size: 2rem;
+    animation: pulse 2s infinite;
+  }
+
+  .trust-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: white;
+  }
+
+  .trust-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 4;
+    animation: bounce 2s infinite;
+  }
+
+  .scroll-dot {
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.7;
+  }
+
+  .scroll-text {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    40% {
+      transform: translateX(-50%) translateY(-10px);
+    }
+    60% {
+      transform: translateX(-50%) translateY(-5px);
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero-section {
+      height: 100vh;
+      min-height: 500px;
+    }
+
+    .hero-text {
+      padding: 0 1rem;
+    }
+
+    .hero-cta {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-cta-primary,
+    .hero-cta-secondary {
+      width: 100%;
+      max-width: 300px;
+      text-align: center;
+    }
+
+    .hero-trust {
+      gap: 1rem;
+    }
+
+    .trust-item {
+      gap: 0.3rem;
+    }
+
+    .trust-icon {
+      font-size: 1.5rem;
+    }
+
+    .trust-text {
+      font-size: 1rem;
+    }
+
+    .trust-label {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .hero-cta-primary,
+    .hero-cta-secondary {
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+    }
+  }
+</style>

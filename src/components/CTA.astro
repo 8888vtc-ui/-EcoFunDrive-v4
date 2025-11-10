@@ -1,0 +1,311 @@
+---
+// ═══════════════════════════════════════════════════════════
+// ECOFUNDRIVE V3.0 - CTA COMPONENT
+// Call-to-action optimisé pour génération dynamique
+// ═══════════════════════════════════════════════════════════
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  primaryText?: string;
+  primaryLink?: string;
+  secondaryText?: string;
+  secondaryLink?: string;
+  variant?: 'default' | 'dark' | 'gradient';
+  size?: 'small' | 'medium' | 'large';
+}
+
+const {
+  title = 'Réservez votre VTC Tesla dès maintenant',
+  subtitle = 'Service premium 24/7 sur la Côte d\'Azur',
+  primaryText = 'Réserver via WhatsApp',
+  primaryLink = 'https://wa.me/33616552811',
+  secondaryText = 'Voir les tarifs',
+  secondaryLink = '/fr/tarifs',
+  variant = 'default',
+  size = 'medium'
+} = Astro.props;
+
+const variantClasses = {
+  default: 'bg-gray-50',
+  dark: 'bg-gray-900 text-white',
+  gradient: 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
+};
+
+const sizeClasses = {
+  small: 'py-12',
+  medium: 'py-16',
+  large: 'py-20'
+};
+
+const buttonSizes = {
+  small: 'px-6 py-3 text-base',
+  medium: 'px-8 py-4 text-lg',
+  large: 'px-10 py-5 text-xl'
+};
+---
+
+<section class={`cta-section ${variantClasses[variant]} ${sizeClasses[size]}`}>
+  <div class="cta-container">
+    <div class="cta-content">
+      {title && (
+        <h2 class="cta-title">{title}</h2>
+      )}
+      
+      {subtitle && (
+        <p class="cta-subtitle">{subtitle}</p>
+      )}
+      
+      <div class="cta-buttons">
+        <a 
+          href={primaryLink}
+          class={`cta-button cta-primary ${buttonSizes[size]}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-track="cta-primary-whatsapp"
+        >
+          <span class="button-icon">📱</span>
+          <span>{primaryText}</span>
+        </a>
+        
+        {secondaryText && (
+          <a 
+            href={secondaryLink}
+            class={`cta-button cta-secondary ${buttonSizes[size]}`}
+            data-track="cta-secondary-pricing"
+          >
+            <span>{secondaryText}</span>
+          </a>
+        )}
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="cta-trust">
+        <div class="trust-badge">
+          <span class="badge-icon">⚡</span>
+          <span class="badge-text">Réponse immédiate</span>
+        </div>
+        <div class="trust-badge">
+          <span class="badge-icon">🔒</span>
+          <span class="badge-text">Paiement sécurisé</span>
+        </div>
+        <div class="trust-badge">
+          <span class="badge-icon">🚫</span>
+          <span class="badge-text">Annulation gratuite</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cta-content {
+    text-align: center;
+    max-width: 800px;
+  }
+
+  .cta-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .cta-subtitle {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+    opacity: 0.8;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-primary {
+    background: #25D366;
+    color: white;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+  }
+
+  .cta-primary:hover {
+    background: #128C7E;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+  }
+
+  .cta-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: inherit;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .cta-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-3px);
+  }
+
+  .button-icon {
+    font-size: 1.2em;
+  }
+
+  .cta-trust {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  .trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    opacity: 0.7;
+  }
+
+  .badge-icon {
+    font-size: 1.2rem;
+  }
+
+  .badge-text {
+    font-weight: 500;
+  }
+
+  /* Variant specific styles */
+  .cta-section.default {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  }
+
+  .cta-section.default .cta-title {
+    color: #333;
+  }
+
+  .cta-section.default .cta-subtitle {
+    color: #666;
+  }
+
+  .cta-section.default .cta-secondary {
+    background: rgba(0, 123, 255, 0.1);
+    color: #007bff;
+    border-color: rgba(0, 123, 255, 0.3);
+  }
+
+  .cta-section.default .cta-secondary:hover {
+    background: rgba(0, 123, 255, 0.2);
+    border-color: rgba(0, 123, 255, 0.5);
+  }
+
+  .cta-section.dark {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  }
+
+  .cta-section.dark .cta-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .cta-section.gradient {
+    background: linear-gradient(135deg, #007bff 0%, #6610f2 100%);
+  }
+
+  .cta-section.gradient .cta-secondary {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  /* Animations */
+  .cta-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  .cta-button:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .cta-container {
+      padding: 0 1rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cta-button {
+      width: 100%;
+      max-width: 300px;
+      justify-content: center;
+    }
+
+    .cta-trust {
+      gap: 1rem;
+    }
+
+    .trust-badge {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cta-title {
+      font-size: 1.5rem;
+    }
+
+    .cta-subtitle {
+      font-size: 1rem;
+    }
+
+    .cta-trust {
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+  }
+</style>

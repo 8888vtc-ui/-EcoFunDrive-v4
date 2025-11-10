@@ -1,0 +1,395 @@
+---
+// ═══════════════════════════════════════════════════════════
+// ECOFUNDRIVE V3.0 - FOOTER COMPONENT
+// Footer complet pour génération dynamique
+// ═══════════════════════════════════════════════════════════
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'fr' } = Astro.props;
+
+const currentYear = new Date().getFullYear();
+
+const content = lang === 'fr' ? {
+  company: {
+    title: 'ECOFUNDRIVE',
+    items: [
+      { label: 'À propos', href: '/fr/a-propos' },
+      { label: 'Notre flotte Tesla', href: '/fr/flotte-tesla' },
+      { label: 'Nos services', href: '/fr/services' },
+      { label: 'Plan du site', href: '/fr/plan-du-site' }
+    ]
+  },
+  guides: {
+    title: 'Guides Côte d\'Azur',
+    items: [
+      { label: 'Restaurants', href: '/fr/restaurants' },
+      { label: 'Hôtels', href: '/fr/hotels' },
+      { label: 'Plages', href: '/fr/plages' },
+      { label: 'Golf', href: '/fr/golf' },
+      { label: 'Yachts', href: '/fr/yachts' }
+    ]
+  },
+  services: {
+    title: 'Services VTC',
+    items: [
+      { label: 'Services VTC', href: '/fr/vtc' },
+      { label: 'Tarifs', href: '/fr/tarifs' },
+      { label: 'Contact', href: '/fr/contact' },
+      { label: 'Réservation 24/7', href: 'https://wa.me/33616552811' }
+    ]
+  },
+  legal: {
+    title: 'Légal',
+    items: [
+      { label: 'Mentions légales', href: '/fr/mentions-legales' },
+      { label: 'CGV', href: '/fr/cgv' },
+      { label: 'Politique de confidentialité', href: '/fr/politique-confidentialite' },
+      { label: 'Cookies', href: '/fr/cookies' }
+    ]
+  },
+  contact: {
+    title: 'Contact',
+    phone: '+33 6 16 55 28 11',
+    email: '8888vtc@gmail.com',
+    whatsapp: '+33616552811',
+    address: '1001 Avenue de la Batterie, 06270 Villeneuve-Loubet',
+    hours: '24/7 - Service disponible 7j/7, 24h/24'
+  },
+  newsletter: {
+    title: 'Newsletter',
+    description: 'Recevez nos offres exclusives et actualités',
+    placeholder: 'Votre email',
+    button: 'S\'inscrire'
+  }
+} : {
+  company: {
+    title: 'ECOFUNDRIVE',
+    items: [
+      { label: 'About', href: '/en/about' },
+      { label: 'Tesla Fleet', href: '/en/tesla-fleet' },
+      { label: 'Services', href: '/en/services' },
+      { label: 'Sitemap', href: '/en/sitemap' }
+    ]
+  },
+  guides: {
+    title: 'French Riviera Guides',
+    items: [
+      { label: 'Restaurants', href: '/en/restaurants' },
+      { label: 'Hotels', href: '/en/hotels' },
+      { label: 'Beaches', href: '/en/beaches' },
+      { label: 'Golf', href: '/en/golf' },
+      { label: 'Yachts', href: '/en/yachts' }
+    ]
+  },
+  services: {
+    title: 'VTC Services',
+    items: [
+      { label: 'VTC Services', href: '/en/vtc' },
+      { label: 'Rates', href: '/en/rates' },
+      { label: 'Contact', href: '/en/contact' },
+      { label: 'Book 24/7', href: 'https://wa.me/33616552811' }
+    ]
+  },
+  legal: {
+    title: 'Legal',
+    items: [
+      { label: 'Legal Notice', href: '/en/legal-notice' },
+      { label: 'T&C', href: '/en/terms' },
+      { label: 'Privacy Policy', href: '/en/privacy-policy' },
+      { label: 'Cookies', href: '/en/cookies' }
+    ]
+  },
+  contact: {
+    title: 'Contact',
+    phone: '+33 6 16 55 28 11',
+    email: '8888vtc@gmail.com',
+    whatsapp: '+33616552811',
+    address: '1001 Avenue de la Batterie, 06270 Villeneuve-Loubet, France',
+    hours: '24/7 - Available 7 days a week, 24 hours a day'
+  },
+  newsletter: {
+    title: 'Newsletter',
+    description: 'Get exclusive offers and news',
+    placeholder: 'Your email',
+    button: 'Subscribe'
+  }
+};
+---
+
+<footer id="main-footer">
+  <div class="footer-content">
+    <div class="footer-container">
+      <!-- Company Info -->
+      <div class="footer-section">
+        <h3>{content.company.title}</h3>
+        <p class="footer-description">
+          {lang === 'fr' 
+            ? 'Service VTC premium avec Tesla électrique sur la Côte d\'Azur. Transferts aéroport, Monaco, Cannes, Saint-Tropez.'
+            : 'Premium VTC service with electric Tesla on the French Riviera. Airport transfers, Monaco, Cannes, St-Tropez.'
+          }
+        </p>
+        <div class="social-links">
+          <a href="https://facebook.com/ecofundrive" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="https://instagram.com/ecofundrive" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-section">
+        <h3>{content.company.title}</h3>
+        <ul>
+          {content.company.items.map(item => (
+            <li>
+              <a href={item.href} data-track={`footer-${item.label.toLowerCase().replace(' ', '-')}`}>
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Guides -->
+      <div class="footer-section">
+        <h3>{content.guides.title}</h3>
+        <ul>
+          {content.guides.items.map(item => (
+            <li>
+              <a href={item.href} data-track={`footer-${item.label.toLowerCase().replace(' ', '-')}`}>
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div class="footer-section">
+        <h3>{content.services.title}</h3>
+        <ul>
+          {content.services.items.map(item => (
+            <li>
+              <a href={item.href} data-track={`footer-${item.label.toLowerCase().replace(' ', '-')}`}>
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-section">
+        <h3>{content.contact.title}</h3>
+        <div class="contact-info">
+          <p>
+            <strong>📱 {content.contact.phone}</strong><br>
+            <a href={`mailto:${content.contact.email}`}>{content.contact.email}</a>
+          </p>
+          <p>
+            <a href={`https://wa.me/${content.contact.whatsapp.replace('+', '')}`} 
+               class="whatsapp-link" 
+               target="_blank" 
+               rel="noopener noreferrer">
+              💬 WhatsApp
+            </a>
+          </p>
+          <p>
+            📍 {content.contact.address}<br>
+            ⏰ {content.contact.hours}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+      <div class="footer-container">
+        <div class="footer-bottom-left">
+          <p>&copy; {currentYear} ECOFUNDRIVE. {lang === 'fr' ? 'Tous droits réservés.' : 'All rights reserved.'}</p>
+          <p>
+            {lang === 'fr' ? 'SIRET' : 'SIRET'} : 91224469600015 | 
+            {lang === 'fr' ? 'N° License VTC' : 'VTC License'} : PREV00606
+          </p>
+        </div>
+        <div class="footer-bottom-right">
+          {content.legal.items.map(item => (
+            <a href={item.href} data-track={`footer-${item.label.toLowerCase().replace(' ', '-')}`}>
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  #main-footer {
+    background: #1a1a1a;
+    color: white;
+    margin-top: 4rem;
+  }
+
+  .footer-content {
+    border-top: 1px solid #333;
+  }
+
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .footer-section {
+    padding: 3rem 0;
+    border-bottom: 1px solid #333;
+  }
+
+  .footer-section:first-child {
+    padding-top: 4rem;
+  }
+
+  .footer-section:last-of-type {
+    border-bottom: none;
+  }
+
+  .footer-section h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #fff;
+  }
+
+  .footer-description {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    max-width: 300px;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .social-links a {
+    color: #ccc;
+    transition: color 0.3s ease;
+  }
+
+  .social-links a:hover {
+    color: #007bff;
+  }
+
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-section li {
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-section a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .footer-section a:hover {
+    color: #007bff;
+  }
+
+  .contact-info {
+    color: #ccc;
+  }
+
+  .contact-info p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .contact-info strong {
+    color: white;
+    font-weight: 600;
+  }
+
+  .whatsapp-link {
+    color: #25D366 !important;
+    font-weight: 600;
+  }
+
+  .whatsapp-link:hover {
+    color: #128C7E !important;
+  }
+
+  .footer-bottom {
+    background: #000;
+    padding: 2rem 0;
+  }
+
+  .footer-bottom .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-bottom-left p {
+    margin: 0;
+    color: #999;
+    font-size: 0.9rem;
+  }
+
+  .footer-bottom-right {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .footer-bottom-right a {
+    color: #999;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+
+  .footer-bottom-right a:hover {
+    color: #007bff;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .footer-container {
+      padding: 0 1rem;
+    }
+
+    .footer-section {
+      padding: 2rem 0;
+    }
+
+    .footer-section:first-child {
+      padding-top: 3rem;
+    }
+
+    .footer-bottom .footer-container {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .footer-bottom-right {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+</style>

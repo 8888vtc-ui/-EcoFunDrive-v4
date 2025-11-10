@@ -1,0 +1,533 @@
+---
+// ═══════════════════════════════════════════════════════════
+// ECOFUNDRIVE V3.0 - PAGE D'ACCUEIL
+// Page d'accueil dynamique avec génération IA
+// ═══════════════════════════════════════════════════════════
+
+import PageLayout from '../layouts/PageLayout.astro';
+import Hero from '../components/Hero.astro';
+import CTA from '../components/CTA.astro';
+import { siteConfig } from '../lib/config';
+
+// SEO Configuration
+const title = 'VTC Tesla Premium Côte d\'Azur | ECOFUNDRIVE';
+const metaTitle = 'VTC Tesla Premium Côte d\'Azur | Chauffeur Privé Monaco Nice Cannes';
+const metaDescription = 'Service VTC premium avec Tesla électrique sur la Côte d\'Azur. Transferts aéroport Nice, Monaco, Cannes, Saint-Tropez. Réservation 24/7 avec chauffeur professionnel.';
+const lang = 'fr';
+const canonical = 'https://ecofundrive.com/fr';
+const ogImage = '/images/hero/homepage-riviera-1920w.webp';
+---
+
+<PageLayout
+  title={title}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
+  lang={lang}
+  canonical={canonical}
+  ogImage={ogImage}
+>
+  <!-- Hero Section -->
+  <Hero
+    title="VTC Tesla Premium Côte d'Azur"
+    subtitle="Votre chauffeur privé électrique pour Monaco, Nice, Cannes et toute la French Riviera. Service premium 24/7."
+    image="/images/hero/shared/homepage-riviera-1920w.webp"
+    showCTA={true}
+    ctaText="Réserver maintenant"
+    ctaLink="https://wa.me/33616552811"
+  />
+
+  <!-- Services Section -->
+  <section class="services-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Nos Services VTC Premium</h2>
+        <p>Découvrez notre gamme de services exclusifs avec flotte 100% Tesla</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🛫</div>
+          <h3>Transfert Aéroport</h3>
+          <p>Service de navette premium depuis/vers l'aéroport Nice Côte d'Azur. Suivi vol en temps réel.</p>
+          <a href="/fr/vtc-aeroport-nice" class="service-link">En savoir plus →</a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🏢</div>
+          <h3>Affaires & Tourism</h3>
+          <p>Déplacements professionnels et touristiques sur toute la Côte d'Azur. Chauffeur bilingue.</p>
+          <a href="/fr/services" class="service-link">Découvrir →</a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🚗</div>
+          <h3>Location avec Chauffeur</h3>
+          <p>Service horaire pour vos événements, visites ou déplacements prolongés. Flexibilité totale.</p>
+          <a href="/fr/tarifs" class="service-link">Tarifs →</a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🌙</div>
+          <h3>Service Nuit</h3>
+          <p>Disponible 24/7 pour vos déplacements nocturnes. Tarifs de nuit transparents.</p>
+          <a href="/fr/contact" class="service-link">Réserver →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fleet Section -->
+  <section class="fleet-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Notre Flotte 100% Électrique</h2>
+        <p>Des véhicules Tesla premium pour un confort et une écologie exceptionnels</p>
+      </div>
+
+      <div class="fleet-grid">
+        {siteConfig.fleet.map((vehicle, index) => (
+          <div class="fleet-card" key={index}>
+            <div class="fleet-image">
+              <img src={`/images/fleet/${vehicle.model.toLowerCase().replace(' ', '-')}.webp`} 
+                   alt={`Tesla ${vehicle.model}`} 
+                   loading="lazy" />
+            </div>
+            <div class="fleet-info">
+              <h3>Tesla {vehicle.model}</h3>
+              <div class="fleet-specs">
+                <span class="spec">👥 {vehicle.capacity}</span>
+                <span class="spec">🧳 {vehicle.luggage}</span>
+                <span class="spec">📦 {vehicle.trunk}</span>
+              </div>
+              <div class="fleet-price">
+                <span class="price">{vehicle.hourlyRate}</span>
+                <span class="price-label">/heure</span>
+              </div>
+              {vehicle.feature && (
+                <div class="fleet-feature">{vehicle.feature}</div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Preview -->
+  <section class="pricing-preview">
+    <div class="container">
+      <div class="section-header">
+        <h2>Tarifs Transparents</h2>
+        <p>Pas de frais cachés, tarifs fixes pour les destinations populaires</p>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Nice ↔ Monaco</h3>
+          <div class="route-info">
+            <span class="distance">22 km • 25 min</span>
+          </div>
+          <div class="price-options">
+            <div class="price-option">
+              <span class="model">Model 3</span>
+              <span class="price">{siteConfig.pricing.niceMonaco.model3}</span>
+            </div>
+            <div class="price-option">
+              <span class="model">Model S</span>
+              <span class="price">{siteConfig.pricing.niceMonaco.modelS}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pricing-card">
+          <h3>Nice ↔ Cannes</h3>
+          <div class="route-info">
+            <span class="distance">27 km • 30 min</span>
+          </div>
+          <div class="price-options">
+            <div class="price-option">
+              <span class="model">Model 3</span>
+              <span class="price">{siteConfig.pricing.niceCannes.model3}</span>
+            </div>
+            <div class="price-option">
+              <span class="model">Model S</span>
+              <span class="price">{siteConfig.pricing.niceCannes.modelS}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pricing-cta">
+        <a href="/fr/tarifs" class="cta-button">Voir tous les tarifs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Section -->
+  <section class="trust-section">
+    <div class="container">
+      <div class="trust-content">
+        <div class="trust-text">
+          <h2>Pourquoi Choisir ECOFUNDRIVE ?</h2>
+          <p>Le service VTC premium de référence sur la Côte d'Azur</p>
+        </div>
+
+        <div class="trust-grid">
+          <div class="trust-item">
+            <div class="trust-icon">⭐</div>
+            <h4>Excellence 5.0/5</h4>
+            <p>{siteConfig.reviews.total} avis vérifiés</p>
+          </div>
+
+          <div class="trust-item">
+            <div class="trust-icon">🌱</div>
+            <h4>100% Électrique</h4>
+            <p>Flotte Tesla zéro émission</p>
+          </div>
+
+          <div class="trust-item">
+            <div class="trust-icon">👨‍✈️</div>
+            <h4>Chauffeurs Experts</h4>
+            <p>Professionnels bilingues</p>
+          </div>
+
+          <div class="trust-item">
+            <div class="trust-icon">🕐</div>
+            <h4>Disponibilité 24/7</h4>
+            <p>Service jour et nuit</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main CTA -->
+  <CTA
+    title="Prêt à voyager dans le luxe et l'écologie ?"
+    subtitle="Réservez votre VTC Tesla dès maintenant et découvrez une nouvelle expérience de transport premium"
+    primaryText="Réserver via WhatsApp"
+    primaryLink="https://wa.me/33616552811"
+    secondaryText="Calculer un devis"
+    secondaryLink="/fr/contact"
+    variant="gradient"
+    size="large"
+  />
+</PageLayout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-header h2 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+
+  .section-header p {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Services Section */
+  .services-section {
+    padding: 5rem 0;
+    background: #f8f9fa;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .service-card {
+    background: white;
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
+
+  .service-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+
+  .service-card p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  .service-link:hover {
+    color: #0056b3;
+  }
+
+  /* Fleet Section */
+  .fleet-section {
+    padding: 5rem 0;
+    background: white;
+  }
+
+  .fleet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .fleet-card {
+    background: #f8f9fa;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+
+  .fleet-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .fleet-image {
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .fleet-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .fleet-info {
+    padding: 1.5rem;
+  }
+
+  .fleet-info h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+
+  .fleet-specs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .spec {
+    background: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  .fleet-price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #007bff;
+  }
+
+  .price-label {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .fleet-feature {
+    background: #007bff;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  /* Pricing Preview */
+  .pricing-preview {
+    padding: 5rem 0;
+    background: #f8f9fa;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .pricing-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .pricing-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+
+  .route-info {
+    margin-bottom: 1.5rem;
+  }
+
+  .distance {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .price-options {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .price-option {
+    flex: 1;
+    text-align: center;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+  }
+
+  .model {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+
+  .price-option .price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #007bff;
+  }
+
+  .pricing-cta {
+    text-align: center;
+  }
+
+  .cta-button {
+    background: #007bff;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+  }
+
+  /* Trust Section */
+  .trust-section {
+    padding: 5rem 0;
+    background: white;
+  }
+
+  .trust-content {
+    text-align: center;
+  }
+
+  .trust-text h2 {
+    margin-bottom: 1rem;
+  }
+
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .trust-item {
+    text-align: center;
+  }
+
+  .trust-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .trust-item h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+
+  .trust-item p {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 1rem;
+    }
+
+    .services-grid,
+    .fleet-grid,
+    .pricing-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .trust-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .price-options {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .trust-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

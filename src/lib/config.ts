@@ -1,6 +1,10 @@
-// ECOFUNDRIVE V2.0 - CONFIG.TS
+// ═══════════════════════════════════════════════════════════
+// ECOFUNDRIVE V3.0 - CONFIGURATION
+// Données centralisées pour génération dynamique
+// ═══════════════════════════════════════════════════════════
 
 export const siteConfig = {
+  siteUrl: import.meta.env.SITE_URL || 'https://ecofundrive.com',
   // Entreprise
   company: {
     name: 'ECOFUNDRIVE',
@@ -119,5 +123,27 @@ export const siteConfig = {
     'Parking + péages inclus',
     'Sièges enfants disponibles sur demande',
     'Assistance 24/7'
-  ]
+  ],
+  
+  // SEO pour V3
+  seo: {
+    defaultTitle: 'VTC Tesla Premium Côte d\'Azur | ECOFUNDRIVE',
+    defaultDescription: 'Service VTC premium avec Tesla électrique sur la Côte d\'Azur. Transferts aéroport Nice, Monaco, Cannes, Saint-Tropez. Réservation 24/7.',
+    keywords: ['VTC Tesla', 'chauffeur privé Côte d\'Azur', 'transport électrique Monaco', 'VTC premium Nice', 'transfert aéroport Nice'],
+    author: 'ECOFUNDRIVE',
+    robots: 'index, follow'
+  },
+  
+  // API Keys V3
+  api: {
+    anthropic: import.meta.env.ANTHROPIC_API_KEY,
+    openai: import.meta.env.OPENAI_API_KEY,
+    replicate: import.meta.env.REPLICATE_API_KEY,
+    sharp: import.meta.env.SHARP_API_KEY
+  }
 };
+
+// Export utilitaires V3
+export const getCurrentYear = () => new Date().getFullYear();
+export const formatPhone = (phone: string) => phone.replace(/(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/, '$1 $2 $3 $4 $5');
+export const generateCanonicalUrl = (path: string) => `${siteConfig.siteUrl}${path}`;

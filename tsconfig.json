@@ -1,47 +1,75 @@
 {
-  "extends": "astro/tsconfigs/strictest",
   "compilerOptions": {
-    // Paths
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+    "noImplicitReturns": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+    
+    /* Path Mapping */
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@components/*": ["src/components/*"],
+      "@/components/*": ["src/components/*"],
+      "@/generators/*": ["src/generators/*"],
+      "@/validators/*": ["src/validators/*"],
+      "@/api/*": ["src/api/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/types/*": ["src/types/*"],
       "@layouts/*": ["src/layouts/*"],
       "@lib/*": ["src/lib/*"],
       "@content/*": ["src/content/*"]
     },
-
-    // Type checking
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "allowUnusedLabels": false,
-    "allowUnreachableCode": false,
-
-    // Module resolution
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-
-    // JavaScript support
+    
+    /* Additional Options */
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "verbatimModuleSyntax": true,
+    
+    /* JavaScript support */
     "allowJs": true,
     "checkJs": false,
-
-    // Modern features
-    "target": "ES2022",
-    "module": "ES2022",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
-
-    // Build
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-
-    // JSX (si besoin framework UI)
-    "jsx": "react-jsx",
-    "jsxImportSource": "react"
+    
+    /* Source Maps */
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    
+    /* Experimental */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", ".astro"]
+  "include": [
+    "src/**/*",
+    "scripts/**/*",
+    "netlify/functions/**/*",
+    "types/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".astro",
+    "build",
+    "coverage",
+    "test-results",
+    "playwright-report"
+  ]
 }
