@@ -300,11 +300,14 @@ INTERDICTIONS:
 ### 7. Charte Graphique & Design
 
 ```yaml
+Charte_Site:
+  categorie: "VTC luxe (premium)"
+  positionnement: "Chauffeur privé haut de gamme sur la Côte d'Azur"
 Couleurs:
   primaire: "#1a1a1a"        # Noir Ã©lÃ©gant
-  secondaire: "#f8f9fa"       # Blanc cassÃ©
+  secondaire: "#f8f9fa"       # Blanc cassÃ
   accent: "#0066ff"           # Bleu Tesla
-  accent_dark: "#0052cc"      # Bleu foncÃ© hover
+  accent_dark: "#0052cc"      # Bleu foncÃ
   texte: "#333333"            # Gris texte
   texte_light: "#666666"      # Gris clair
   bordure: "#e0e0e0"          # Bordure subtle
@@ -349,7 +352,7 @@ Font_Sizes:
   longueur: "50-60 caractÃ¨res"
   format: "[Keyword] | VTC Tesla Premium [Ville]"
   unique: true
-  keyword: "Obligatoire au dÃ©but"
+  keyword: "Obligatoire au dÃbut"
   
 2_Meta_Description:
   longueur: "150-160 caractÃ¨res"
@@ -360,7 +363,7 @@ Font_Sizes:
 3_H1_Principal:
   quantite: "1 seul H1 par page"
   longueur: "50-70 caractÃ¨res"
-  keyword: "Obligatoire au dÃ©but"
+  keyword: "Obligatoire au dÃbut"
   format: "[Keyword] : Description courte"
   
 4_Structure_Headings:
@@ -379,7 +382,7 @@ Font_Sizes:
   content: "2-3 images lazy loading"
   alt_text: "5-20 mots descriptifs"
   poids_max: "250KB hero, 150KB content"
-  style: "Paysages cinÃ©matiques SANS logos"
+  style: "Paysages cinÃmatiques SANS logos"
   
 7_Internal_Links:
   standard: "8 liens internes"
@@ -390,8 +393,8 @@ Font_Sizes:
   
 8_FAQ_Section:
   quantite: "5 questions exactement"
-  longueur: "60-100 mots/rÃ©ponse"
-  unique: "100% contextualisÃ©es Ã  la page"
+  longueur: "60-100 mots/rÃponse"
+  unique: "100% contextualisÃes Ã  la page"
   schema: "FAQPage JSON-LD obligatoire"
   backlinks: "2-3 questions avec liens internes"
   
@@ -404,18 +407,27 @@ Font_Sizes:
     - "AggregateRating (Trustindex 26 avis)"
     - "Organization (entreprise)"
   format: "JSON-LD inline <script type='application/ld+json'>"
-  exception: "Seul code inline autorisÃ© (reste 100% externe)"
-  
-10_Technical_Standards:
-  html5: "DOCTYPE + lang attribute (fr ou en)"
-  mobile: "100% responsive"
-  performance: "LCP <2.5s, CLS <0.1, FID <100ms"
-  canonical: "URL absolue HTTPS"
-  hreflang: "Bidirectionnel fr/en + x-default"
-  sitemap: "Auto-gÃ©nÃ©rÃ© par Astro"
-```
+  exception: "Seul code inline autorisÃ"
+  412→10_Technical_Standards:
+  413→  html5: "DOCTYPE + lang attribute (fr ou en)"
+  414→  mobile: "100% responsive"
+  415→  performance: "LCP <2.5s, CLS <0.1, FID <100ms"
+  416→  canonical: "URL absolue HTTPS"
+  417→  hreflang: "Bidirectionnel fr/en + x-default"
+  418→  sitemap: "Auto-gÃnÃrÃ par Astro"
+  419→```
 
-### Standards QualitÃ©
+  420→```
+  421→IA_Global_Rules:
+  422→  No_Invention:
+  423→    description: "L'IA ne doit jamais inventer de donnÃes critiques (prix, avis, partenaires, certifications, historique)."
+  424→    source_donnees: "Seules les informations fournies dans la config, le formulaire ou la doc font foi."
+  425→  No_Meta_IA:
+  426→    description: "Ne jamais mentionner que le contenu est gÃnÃrÃ par une IA, un modÃ¨le ou un prompt."
+  427→    contrainte: "Ã‰crire comme un site classique, sans rÃfÃrence aux outils de gÃnÃration."
+  428→```
+
+  429→### Standards QualitÃ
 
 ```yaml
 Performance:

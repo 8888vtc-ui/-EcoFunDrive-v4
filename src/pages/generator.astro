@@ -1,0 +1,592 @@
+---
+// ═══════════════════════════════════════════════════════════
+// GENERATOR V1 - PAGE /generator
+// Interface principale du générateur de sites SEO
+// ═══════════════════════════════════════════════════════════
+
+import PageLayout from '../layouts/PageLayout.astro';
+import { siteConfig } from '../lib/config';
+
+const title = 'Générateur de Sites SEO';
+const metaTitle = 'Générateur de Sites SEO | Création & Mise à jour';
+const metaDescription = "Configurez un projet (identité, SEO, tracking) puis générez ou mettez à jour un site complet optimisé SEO avec déploiement Netlify.";
+const lang = 'fr';
+const canonical = `${siteConfig.siteUrl.replace(/\/$/, '')}/generator`;
+const ogImage = '/images/hero/default-hero.webp';
+---
+
+<PageLayout
+  title={title}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
+  lang={lang}
+  canonical={canonical}
+  ogImage={ogImage}
+>
+  <section class="generator-page">
+    <div class="container">
+      <header class="page-header">
+        <h1>Générateur de Sites SEO V1</h1>
+        <p>
+          Définissez votre projet (identité, RGPD, SEO, tracking, affiliation) puis choisissez entre
+          la création d'un nouveau site ou la mise à jour d'un site existant déjà déployé sur Netlify.
+        </p>
+      </header>
+
+      <div class="generator-layout">
+        <!-- Mode selector -->
+        <aside class="generator-sidebar">
+          <h2>Mode</h2>
+          <ul>
+            <li><span class="mode-label active">Créer un nouveau site</span></li>
+            <li><span class="mode-label">Mettre à jour un site existant</span></li>
+          </ul>
+          <p class="hint">
+            La logique sera gérée côté pipeline (dry-run, nombre de pages, options IA). Cette page
+            sert d'interface centrale pour préparer les profils de génération.
+          </p>
+        </aside>
+
+        <!-- Main form skeleton -->
+        <div class="generator-main">
+          <section class="form-section">
+            <h2>1. Identité & RGPD</h2>
+            <p>Champs obligatoires pour un site professionnel (nom, type d'entité, adresse, contacts...).</p>
+            <div class="grid-2">
+              <div class="field-group">
+                <label for="project-name">Nom du site / projet</label>
+                <input id="project-name" type="text" placeholder="Ex : Mon Site SEO" />
+              </div>
+              <div class="field-group">
+                <label for="entity-type">Type d'entité</label>
+                <select id="entity-type">
+                  <option value="">Sélectionner...</option>
+                  <option value="micro">Micro-entreprise</option>
+                  <option value="societe">Société</option>
+                  <option value="liberal">Profession libérale</option>
+                  <option value="asso">Association</option>
+                  <option value="autre">Autre</option>
+                </select>
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="field-group">
+                <label for="company-name">Nom légal de l'entité</label>
+                <input id="company-name" type="text" />
+              </div>
+              <div class="field-group">
+                <label for="registration">Numéro d'immatriculation (SIRET ou équivalent)</label>
+                <input id="registration" type="text" />
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="field-group">
+                <label for="email">Email de contact</label>
+                <input id="email" type="email" />
+              </div>
+              <div class="field-group">
+                <label for="phone">Téléphone</label>
+                <input id="phone" type="tel" />
+              </div>
+            </div>
+            <div class="field-group">
+              <label>Canaux de contact préférés</label>
+              <div class="contact-channels">
+                <label>
+                  <input type="checkbox" />
+                  Formulaire de contact (email caché)
+                </label>
+                <label>
+                  <input type="checkbox" />
+                  Téléphone
+                </label>
+                <label>
+                  <input type="checkbox" />
+                  WhatsApp (prioritaire)
+                </label>
+              </div>
+              <p class="field-hint">
+                Si vous ne cochez rien, le site pourra rester purement informatif sans contact direct affiché.
+              </p>
+            </div>
+          </section>
+
+          <section class="form-section">
+            <h2>2. SEO & langues</h2>
+            <p>Définissez le domaine d'activité, les langues, vos zones cibles et les éléments qui évitent un site générique.</p>
+            <div class="field-group">
+              <label for="activity">Description de l'activité</label>
+              <textarea
+                id="activity"
+                rows={3}
+                placeholder="Présentez votre activité, votre niche et pour qui vous travaillez."
+              ></textarea>
+            </div>
+            <div class="field-group">
+              <label for="about">Parlez-nous de vous (minimum recommandé 300 caractères)</label>
+              <textarea
+                id="about"
+                rows={4}
+                minlength={200}
+                placeholder="Expliquez qui vous êtes, votre expérience, votre façon de travailler, ce qui vous rend différent."
+              ></textarea>
+              <p class="field-hint">Plus vous donnez de détails ici, moins le site sera générique.</p>
+            </div>
+            <div class="field-group">
+              <label for="keyword">Mot-clé principal (test V1)</label>
+              <input id="keyword" type="text" placeholder="Ex : création site vitrine" />
+            </div>
+            <div class="grid-2">
+              <div class="field-group">
+                <label for="languages">Langues</label>
+                <input id="languages" type="text" placeholder="Ex : fr=10, en=5" />
+              </div>
+              <div class="field-group">
+                <label for="tone">Ton de rédaction</label>
+                <select id="tone">
+                  <option value="">Sélectionner...</option>
+                  <option value="pro">Professionnel</option>
+                  <option value="warm">Pro & chaleureux</option>
+                  <option value="premium">Premium / luxe</option>
+                  <option value="expert">Pédagogique / expert</option>
+                  <option value="dynamic">Dynamique / conversion</option>
+                  <option value="story">Storytelling (narratif)</option>
+                  <option value="natural">Naturel / conversationnel</option>
+                  <option value="business">Business / corporate</option>
+                </select>
+              </div>
+            </div>
+            <div class="field-group">
+              <label for="zones">Zones géographiques couvertes *</label>
+              <textarea
+                id="zones"
+                rows={2}
+                placeholder="Ex : Nice, Cannes, Monaco, Antibes, Saint-Tropez, Marseille..."
+              ></textarea>
+              <p class="field-hint">Indiquez clairement les villes / zones principales pour générer des pages locales pertinentes.</p>
+            </div>
+          </section>
+
+          <section class="form-section">
+            <h2>3. Objectifs & offres</h2>
+            <p>Définissez l'objectif principal du site, la manière de présenter vos tarifs et votre positionnement.</p>
+            <div class="field-group">
+              <label for="site-goal">Objectif principal du site</label>
+              <select id="site-goal">
+                <option value="">Sélectionner...</option>
+                <option value="devis">Recevoir des demandes de devis</option>
+                <option value="appels">Recevoir des appels téléphoniques</option>
+                <option value="whatsapp">Recevoir des messages WhatsApp</option>
+                <option value="presence">Présence SEO / image de marque</option>
+                <option value="autre">Autre (à préciser dans les commentaires)</option>
+              </select>
+            </div>
+            <div class="grid-2">
+              <div class="field-group">
+                <label for="main-cta-text">Texte du bouton principal (CTA)</label>
+                <input
+                  id="main-cta-text"
+                  type="text"
+                  placeholder="Ex : Demander un devis, Message WhatsApp, Réserver maintenant"
+                />
+              </div>
+              <div class="field-group">
+                <label for="availability">Horaires & disponibilité</label>
+                <input id="availability" type="text" placeholder="Ex : 24/7, ou Lun-Dim 7h-22h" />
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="field-group">
+                <label for="pricing-visibility">Affichage des tarifs</label>
+                <select id="pricing-visibility">
+                  <option value="">Sélectionner...</option>
+                  <option value="show">Afficher des tarifs indicatifs</option>
+                  <option value="from">Afficher des prix &quot;à partir de&quot;</option>
+                  <option value="hidden">Ne pas afficher de tarifs (sur devis uniquement)</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label for="pricing-positioning">Positionnement prix</label>
+                <select id="pricing-positioning">
+                  <option value="">Sélectionner...</option>
+                  <option value="market">Dans les prix du marché</option>
+                  <option value="premium">Haut de gamme</option>
+                  <option value="accessible">Accessible / entrée de gamme</option>
+                </select>
+              </div>
+            </div>
+            <div class="field-group">
+              <label for="pricing-notes">Notes sur les tarifs & exceptions</label>
+              <textarea
+                id="pricing-notes"
+                rows={2}
+                placeholder='Ex : Saint-Tropez = tarifs sur demande, pas de prix fixes.'
+              ></textarea>
+            </div>
+          </section>
+
+          <section class="form-section">
+            <h2>4. Tracking, affiliation, réseaux & avis</h2>
+            <p>Champs optionnels pour le suivi et la monétisation.</p>
+            <div class="grid-3">
+              <div class="field-group">
+                <label for="gtm">Google Tag Manager ID</label>
+                <input id="gtm" type="text" placeholder="GTM-XXXXXXX" />
+              </div>
+              <div class="field-group">
+                <label for="ga4">GA4 Measurement ID</label>
+                <input id="ga4" type="text" placeholder="G-XXXXXXX" />
+              </div>
+              <div class="field-group">
+                <label for="pixel">Facebook / Meta Pixel ID</label>
+                <input id="pixel" type="text" />
+              </div>
+            </div>
+            <div class="field-group">
+              <label for="social">Réseaux sociaux (URLs)</label>
+              <textarea id="social" rows={2} placeholder="Ex : facebook=..., instagram=..., linkedin=..."></textarea>
+            </div>
+            <div class="field-group">
+              <label for="reviews">Liens d'avis & résumé (optionnel)</label>
+              <textarea id="reviews" rows={2} placeholder="Ex : trustpilot=..., note=4.8, avis=36"></textarea>
+            </div>
+          </section>
+
+          <section class="form-section">
+            <h2>5. Options IA & exécution</h2>
+            <p>Contrôlez l'utilisation des APIs (dry-run, audit IA, chatbot...).</p>
+            <div class="grid-2">
+              <div class="field-group">
+                <label>
+                  <input type="checkbox" checked />
+                  Mode dry-run (aucun déploiement, génération de rapports uniquement)
+                </label>
+              </div>
+              <div class="field-group">
+                <label>
+                  <input type="checkbox" checked />
+                  Activer audit SEO IA (en plus des contrôles techniques)
+                </label>
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="field-group">
+                <label>
+                  <input type="checkbox" checked />
+                  Générer chatbot & base de connaissances
+                </label>
+              </div>
+              <div class="field-group">
+                <label>
+                  <input type="checkbox" checked />
+                  Générer contenus "SEO pour IA" (résumés structurés, snippets, etc.)
+                </label>
+              </div>
+            </div>
+            <div class="field-group">
+              <label for="ai-summary">Résumé optimisé pour les intelligences artificielles</label>
+              <textarea
+                id="ai-summary"
+                rows={3}
+                placeholder="Texte court et clair que les IA peuvent utiliser pour décrire votre activité (Google, ChatGPT, etc.)."
+              ></textarea>
+              <p class="field-hint">
+                Ce résumé servira de base aux contenus "SEO pour IA" et aux assistants type chatbot. Plus il est précis,
+                moins la description générée sera générique.
+              </p>
+            </div>
+          </section>
+
+          <section class="form-section form-actions">
+            <button type="button" class="primary-action" id="run-test-button">Lancer un test (1 page)</button>
+            <button type="button" class="secondary-action">Préparer un run complet</button>
+          </section>
+
+          <section class="form-section" id="dry-run-result" hidden>
+            <h2>Résultat du test (V1)</h2>
+            <p id="dry-run-summary"></p>
+            <pre id="dry-run-details"></pre>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<script type="module">
+  const runButton = document.getElementById('run-test-button');
+  const generateKeywordsButton = document.getElementById('generate-keywords-button');
+  const keywordInput = document.getElementById('keyword');
+  const activityInput = document.getElementById('activity');
+  const resultSection = document.getElementById('dry-run-result');
+  const summaryEl = document.getElementById('dry-run-summary');
+  const detailsEl = document.getElementById('dry-run-details');
+
+  const keywordIdeasContainerId = 'keyword-ideas-result';
+  let keywordIdeasContainer = document.getElementById(keywordIdeasContainerId);
+
+  async function runDryRun() {
+    if (!keywordInput || !summaryEl || !detailsEl || !resultSection) return;
+
+    const keyword = keywordInput.value.trim();
+    if (!keyword) {
+      alert('Merci de saisir un mot-clé principal pour le test.');
+      return;
+    }
+
+    summaryEl.textContent = 'Exécution du test en cours...';
+    detailsEl.textContent = '';
+    resultSection.hidden = false;
+
+    try {
+      const response = await fetch('/api/v1-dry-run', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ keyword, language: 'fr' }),
+      });
+
+      const data = await response.json();
+
+      if (!data.ok) {
+        summaryEl.textContent = 'Erreur pendant le test (voir console).';
+        console.error('Erreur V1 dry-run:', data);
+        return;
+      }
+
+      summaryEl.textContent = `Score SEO: ${data.seo.score}/100 - Note: ${data.seo.grade}`;
+      detailsEl.textContent = JSON.stringify(data, null, 2);
+    } catch (error) {
+      summaryEl.textContent = 'Erreur réseau ou serveur pendant le test.';
+      console.error('Erreur V1 dry-run:', error);
+    }
+  }
+
+  if (runButton) {
+    runButton.addEventListener('click', () => {
+      runDryRun();
+    });
+  }
+</script>
+
+<style>
+  .generator-page {
+    padding: 6rem 0 4rem;
+    background: #f5f5f7;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .page-header h1 {
+    font-size: clamp(2.2rem, 4vw, 2.8rem);
+    margin-bottom: 1rem;
+  }
+
+  .page-header p {
+    max-width: 720px;
+    margin: 0 auto;
+    color: #555;
+  }
+
+  .generator-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+
+  .generator-sidebar {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 100px;
+  }
+
+  .generator-sidebar h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .generator-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem 0;
+  }
+
+  .generator-sidebar li {
+    margin-bottom: 0.5rem;
+  }
+
+  .mode-label {
+    display: inline-block;
+    padding: 0.5rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    border: 1px solid #ddd;
+    cursor: default;
+  }
+
+  .mode-label.active {
+    background: #0f766e;
+    color: #fff;
+    border-color: #0f766e;
+  }
+
+  .hint {
+    font-size: 0.85rem;
+    color: #666;
+  }
+
+  .generator-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-section {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 1.75rem 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  }
+
+  .form-section h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-section p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 1.25rem;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+  }
+
+  input,
+  select,
+  textarea {
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: #0f766e;
+    box-shadow: 0 0 0 1px rgba(15, 118, 110, 0.2);
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+
+  .primary-action,
+  .secondary-action {
+    border-radius: 999px;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .primary-action {
+    background: #0f766e;
+    color: #fff;
+  }
+
+  .primary-action:hover {
+    background: #115e59;
+  }
+
+  .secondary-action {
+    background: #e5e7eb;
+    color: #111827;
+  }
+
+  .secondary-action:hover {
+    background: #d1d5db;
+  }
+
+  @media (max-width: 900px) {
+    .generator-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .generator-sidebar {
+      position: static;
+      top: auto;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .container {
+      padding: 0 1rem;
+    }
+
+    .grid-2 {
+      grid-template-columns: 1fr;
+    }
+
+    .grid-3 {
+      grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .primary-action,
+    .secondary-action {
+      width: 100%;
+    }
+  }
+</style>

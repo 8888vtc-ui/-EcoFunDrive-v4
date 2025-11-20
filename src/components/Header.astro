@@ -1,5 +1,4 @@
 ---
-// ═══════════════════════════════════════════════════════════
 // ECOFUNDRIVE V3.0 - HEADER COMPONENT
 // Navigation responsive pour génération dynamique
 // ═══════════════════════════════════════════════════════════
@@ -11,17 +10,13 @@ interface Props {
 const { lang = 'fr' } = Astro.props;
 
 const navLinks = lang === 'fr' ? [
-  { label: 'Accueil', href: '/fr' },
-  { label: 'Services', href: '/fr/services' },
-  { label: 'Flotte Tesla', href: '/fr/flotte-tesla' },
-  { label: 'Tarifs', href: '/fr/tarifs' },
-  { label: 'Contact', href: '/fr/contact' }
+  { label: 'Accueil', href: '/' },
+  { label: 'Générateur', href: '/generator' },
+  { label: 'Politique de confidentialité', href: '/politique-confidentialite' }
 ] : [
-  { label: 'Home', href: '/en' },
-  { label: 'Services', href: '/en/services' },
-  { label: 'Tesla Fleet', href: '/en/tesla-fleet' },
-  { label: 'Rates', href: '/en/rates' },
-  { label: 'Contact', href: '/en/contact' }
+  { label: 'Home', href: '/' },
+  { label: 'Generator', href: '/generator' },
+  { label: 'Privacy Policy', href: '/politique-confidentialite' }
 ];
 
 const currentPath = Astro.url.pathname;
@@ -33,7 +28,7 @@ const currentPath = Astro.url.pathname;
     <a href={`/${lang}`} class="logo">
       <img
         src="/images/logo-ecofundrive.svg"
-        alt="ECOFUNDRIVE - VTC Tesla Premium Côte d'Azur"
+        alt="SEO Site Generator"
         width="180"
         height="50"
         loading="eager"
@@ -60,13 +55,11 @@ const currentPath = Astro.url.pathname;
     <!-- CTA Button -->
     <div class="header-cta">
       <a 
-        href="https://wa.me/33616552811"
+        href="/generator"
         class="cta-button"
-        target="_blank"
-        rel="noopener noreferrer"
-        data-track="header-cta-whatsapp"
+        data-track="header-cta-generator"
       >
-        {lang === 'fr' ? 'Réserver' : 'Book Now'}
+        {lang === 'fr' ? 'Lancer le générateur' : 'Open generator'}
       </a>
       
       <!-- Language Switcher -->
@@ -101,13 +94,11 @@ const currentPath = Astro.url.pathname;
       ))}
       <li class="mobile-cta">
         <a 
-          href="https://wa.me/33616552811"
+          href="/generator"
           class="cta-button"
-          target="_blank"
-          rel="noopener noreferrer"
-          data-track="mobile-cta-whatsapp"
+          data-track="mobile-cta-generator"
         >
-          {lang === 'fr' ? 'Réserver' : 'Book Now'}
+          {lang === 'fr' ? 'Lancer le générateur' : 'Open generator'}
         </a>
       </li>
     </ul>

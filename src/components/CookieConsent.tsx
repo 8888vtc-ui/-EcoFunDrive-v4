@@ -37,8 +37,8 @@ export const CookieConsent: React.FC<CookieConsentProps> = ({
 
   // Vérifier si le consentement a déjà été donné
   useEffect(() => {
-    const hasConsent = localStorage.getItem('ecofundrive_cookie_consent');
-    const savedSettings = localStorage.getItem('ecofundrive_cookie_settings');
+    const hasConsent = localStorage.getItem('seo_sitegen_cookie_consent');
+    const savedSettings = localStorage.getItem('seo_sitegen_cookie_settings');
 
     if (showOnFirstVisit && !hasConsent) {
       setIsVisible(true);
@@ -56,9 +56,9 @@ export const CookieConsent: React.FC<CookieConsentProps> = ({
   // Appliquer les paramètres de cookies
   const applyCookieSettings = (newSettings: CookieSettings) => {
     // Sauvegarder localement
-    localStorage.setItem('ecofundrive_cookie_consent', 'given');
-    localStorage.setItem('ecofundrive_cookie_settings', JSON.stringify(newSettings));
-    localStorage.setItem('ecofundrive_cookie_date', new Date().toISOString());
+    localStorage.setItem('seo_sitegen_cookie_consent', 'given');
+    localStorage.setItem('seo_sitegen_cookie_settings', JSON.stringify(newSettings));
+    localStorage.setItem('seo_sitegen_cookie_date', new Date().toISOString());
 
     // Appliquer les cookies selon le consentement
     applyCookies(newSettings);
@@ -77,8 +77,8 @@ export const CookieConsent: React.FC<CookieConsentProps> = ({
     // Cookies essentiels (toujours activés)
     if (cookieSettings.necessary) {
       // Cookie de session, langue, etc.
-      document.cookie = 'ecofundrive_session=active; path=/; SameSite=Strict; Secure';
-      document.cookie = `ecofundrive_lang=fr; path=/; max-age=31536000; SameSite=Lax; Secure`;
+      document.cookie = 'seo_sitegen_session=active; path=/; SameSite=Strict; Secure';
+      document.cookie = `seo_sitegen_lang=fr; path=/; max-age=31536000; SameSite=Lax; Secure`;
     }
 
     // Google Analytics (si consentement)
@@ -89,7 +89,7 @@ export const CookieConsent: React.FC<CookieConsentProps> = ({
           analytics_storage: 'granted'
         });
       }
-      document.cookie = 'ecofundrive_analytics=enabled; path=/; max-age=39500000; SameSite=Lax; Secure';
+      document.cookie = 'seo_sitegen_analytics=enabled; path=/; max-age=39500000; SameSite=Lax; Secure';
     } else {
       // Désactiver Analytics
       if (typeof window !== 'undefined' && (window as any).gtag) {
@@ -97,21 +97,21 @@ export const CookieConsent: React.FC<CookieConsentProps> = ({
           analytics_storage: 'denied'
         });
       }
-      document.cookie = 'ecofundrive_analytics=disabled; path=/; max-age=0; SameSite=Lax; Secure';
+      document.cookie = 'seo_sitegen_analytics=disabled; path=/; max-age=0; SameSite=Lax; Secure';
     }
 
     // Cookies marketing
     if (cookieSettings.marketing) {
-      document.cookie = 'ecofundrive_marketing=enabled; path=/; max-age=31536000; SameSite=Lax; Secure';
+      document.cookie = 'seo_sitegen_marketing=enabled; path=/; max-age=31536000; SameSite=Lax; Secure';
     } else {
-      document.cookie = 'ecofundrive_marketing=disabled; path=/; max-age=0; SameSite=Lax; Secure';
+      document.cookie = 'seo_sitegen_marketing=disabled; path=/; max-age=0; SameSite=Lax; Secure';
     }
 
     // Cookies de préférences
     if (cookieSettings.preferences) {
-      document.cookie = 'ecofundrive_preferences=enabled; path=/; max-age=31536000; SameSite=Lax; Secure';
+      document.cookie = 'seo_sitegen_preferences=enabled; path=/; max-age=31536000; SameSite=Lax; Secure';
     } else {
-      document.cookie = 'ecofundrive_preferences=disabled; path=/; max-age=0; SameSite=Lax; Secure';
+      document.cookie = 'seo_sitegen_preferences=disabled; path=/; max-age=0; SameSite=Lax; Secure';
     }
   };
 
@@ -191,7 +191,7 @@ export const CookieConsent: React.FC<CookieConsentProps> = ({
                 </h3>
               </div>
               <p className={`text-sm ${classes.subtext} mb-3`}>
-                ECOFUNDRIVE utilise des cookies pour améliorer votre expérience, 
+                Ce site utilise des cookies pour améliorer votre expérience, 
                 analyser le trafic et personnaliser le contenu. Conformément au RGPD, 
                 nous demandons votre consentement pour certains cookies.
               </p>

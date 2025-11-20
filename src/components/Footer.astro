@@ -14,105 +14,95 @@ const currentYear = new Date().getFullYear();
 
 const content = lang === 'fr' ? {
   company: {
-    title: 'ECOFUNDRIVE',
+    title: 'SEO Site Generator',
     items: [
-      { label: 'À propos', href: '/fr/a-propos' },
-      { label: 'Notre flotte Tesla', href: '/fr/flotte-tesla' },
-      { label: 'Nos services', href: '/fr/services' },
-      { label: 'Plan du site', href: '/fr/plan-du-site' }
+      { label: 'Accueil', href: '/' },
+      { label: 'Générateur', href: '/generator' },
+      { label: 'Politique de confidentialité', href: '/politique-confidentialite' }
     ]
   },
   guides: {
-    title: 'Guides Côte d\'Azur',
+    title: 'Ressources',
     items: [
-      { label: 'Restaurants', href: '/fr/restaurants' },
-      { label: 'Hôtels', href: '/fr/hotels' },
-      { label: 'Plages', href: '/fr/plages' },
-      { label: 'Golf', href: '/fr/golf' },
-      { label: 'Yachts', href: '/fr/yachts' }
+      { label: 'Guide d\'utilisation', href: '/generator' },
+      { label: 'FAQ', href: '#' },
+      { label: 'Blog', href: '#' }
     ]
   },
   services: {
-    title: 'Services VTC',
+    title: 'Fonctionnalités',
     items: [
-      { label: 'Services VTC', href: '/fr/vtc' },
-      { label: 'Tarifs', href: '/fr/tarifs' },
-      { label: 'Contact', href: '/fr/contact' },
-      { label: 'Réservation 24/7', href: 'https://wa.me/33616552811' }
+      { label: 'Génération de sites', href: '/generator' },
+      { label: 'Audit SEO', href: '#' },
+      { label: 'Maillage interne', href: '#' },
+      { label: 'Déploiement automatique', href: '#' }
     ]
   },
   legal: {
     title: 'Légal',
     items: [
-      { label: 'Mentions légales', href: '/fr/mentions-legales' },
-      { label: 'CGV', href: '/fr/cgv' },
-      { label: 'Politique de confidentialité', href: '/fr/politique-confidentialite' },
-      { label: 'Cookies', href: '/fr/cookies' }
+      { label: 'Politique de confidentialité', href: '/politique-confidentialite' },
+      { label: 'Politique de cookies', href: '/politique-cookies' }
     ]
   },
   contact: {
     title: 'Contact',
-    phone: '+33 6 16 55 28 11',
-    email: '8888vtc@gmail.com',
-    whatsapp: '+33616552811',
-    address: '1001 Avenue de la Batterie, 06270 Villeneuve-Loubet',
-    hours: '24/7 - Service disponible 7j/7, 24h/24'
+    phone: '',
+    email: '',
+    whatsapp: '',
+    address: '',
+    hours: ''
   },
   newsletter: {
     title: 'Newsletter',
-    description: 'Recevez nos offres exclusives et actualités',
+    description: 'Actualités et améliorations du générateur',
     placeholder: 'Votre email',
     button: 'S\'inscrire'
   }
 } : {
   company: {
-    title: 'ECOFUNDRIVE',
+    title: 'SEO Site Generator',
     items: [
-      { label: 'About', href: '/en/about' },
-      { label: 'Tesla Fleet', href: '/en/tesla-fleet' },
-      { label: 'Services', href: '/en/services' },
-      { label: 'Sitemap', href: '/en/sitemap' }
+      { label: 'Home', href: '/' },
+      { label: 'Generator', href: '/generator' },
+      { label: 'Privacy Policy', href: '/politique-confidentialite' }
     ]
   },
   guides: {
-    title: 'French Riviera Guides',
+    title: 'Resources',
     items: [
-      { label: 'Restaurants', href: '/en/restaurants' },
-      { label: 'Hotels', href: '/en/hotels' },
-      { label: 'Beaches', href: '/en/beaches' },
-      { label: 'Golf', href: '/en/golf' },
-      { label: 'Yachts', href: '/en/yachts' }
+      { label: 'User guide', href: '/generator' },
+      { label: 'FAQ', href: '#' },
+      { label: 'Blog', href: '#' }
     ]
   },
   services: {
-    title: 'VTC Services',
+    title: 'Features',
     items: [
-      { label: 'VTC Services', href: '/en/vtc' },
-      { label: 'Rates', href: '/en/rates' },
-      { label: 'Contact', href: '/en/contact' },
-      { label: 'Book 24/7', href: 'https://wa.me/33616552811' }
+      { label: 'Site generation', href: '/generator' },
+      { label: 'SEO audit', href: '#' },
+      { label: 'Internal linking', href: '#' },
+      { label: 'Automatic deploy', href: '#' }
     ]
   },
   legal: {
     title: 'Legal',
     items: [
-      { label: 'Legal Notice', href: '/en/legal-notice' },
-      { label: 'T&C', href: '/en/terms' },
-      { label: 'Privacy Policy', href: '/en/privacy-policy' },
-      { label: 'Cookies', href: '/en/cookies' }
+      { label: 'Privacy Policy', href: '/politique-confidentialite' },
+      { label: 'Cookie Policy', href: '/politique-cookies' }
     ]
   },
   contact: {
     title: 'Contact',
-    phone: '+33 6 16 55 28 11',
-    email: '8888vtc@gmail.com',
-    whatsapp: '+33616552811',
-    address: '1001 Avenue de la Batterie, 06270 Villeneuve-Loubet, France',
-    hours: '24/7 - Available 7 days a week, 24 hours a day'
+    phone: '',
+    email: '',
+    whatsapp: '',
+    address: '',
+    hours: ''
   },
   newsletter: {
     title: 'Newsletter',
-    description: 'Get exclusive offers and news',
+    description: 'News and improvements about the generator',
     placeholder: 'Your email',
     button: 'Subscribe'
   }
@@ -127,17 +117,17 @@ const content = lang === 'fr' ? {
         <h3>{content.company.title}</h3>
         <p class="footer-description">
           {lang === 'fr' 
-            ? 'Service VTC premium avec Tesla électrique sur la Côte d\'Azur. Transferts aéroport, Monaco, Cannes, Saint-Tropez.'
-            : 'Premium VTC service with electric Tesla on the French Riviera. Airport transfers, Monaco, Cannes, St-Tropez.'
+            ? 'Générateur de sites web optimisés pour le SEO, avec contenu IA, audit et déploiement automatisé.'
+            : 'SEO-optimized site generator with AI content, audit and automated deployment.'
           }
         </p>
         <div class="social-links">
-          <a href="https://facebook.com/ecofundrive" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
               <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
             </svg>
           </a>
-          <a href="https://instagram.com/ecofundrive" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
             </svg>
@@ -192,20 +182,10 @@ const content = lang === 'fr' ? {
         <h3>{content.contact.title}</h3>
         <div class="contact-info">
           <p>
-            <strong>📱 {content.contact.phone}</strong><br>
-            <a href={`mailto:${content.contact.email}`}>{content.contact.email}</a>
-          </p>
-          <p>
-            <a href={`https://wa.me/${content.contact.whatsapp.replace('+', '')}`} 
-               class="whatsapp-link" 
-               target="_blank" 
-               rel="noopener noreferrer">
-              💬 WhatsApp
-            </a>
-          </p>
-          <p>
-            📍 {content.contact.address}<br>
-            ⏰ {content.contact.hours}
+            {lang === 'fr'
+              ? 'Les informations de contact seront définies pour chaque site généré.'
+              : 'Contact information will be defined for each generated site.'
+            }
           </p>
         </div>
       </div>
@@ -215,10 +195,12 @@ const content = lang === 'fr' ? {
     <div class="footer-bottom">
       <div class="footer-container">
         <div class="footer-bottom-left">
-          <p>&copy; {currentYear} ECOFUNDRIVE. {lang === 'fr' ? 'Tous droits réservés.' : 'All rights reserved.'}</p>
+          <p>&copy; {currentYear} SEO Site Generator. {lang === 'fr' ? 'Tous droits réservés.' : 'All rights reserved.'}</p>
           <p>
-            {lang === 'fr' ? 'SIRET' : 'SIRET'} : 91224469600015 | 
-            {lang === 'fr' ? 'N° License VTC' : 'VTC License'} : PREV00606
+            {lang === 'fr'
+              ? 'Générateur générique de sites SEO – aucune donnée d’entreprise n’est stockée sans votre consentement.'
+              : 'Generic SEO site generator – no business data is stored without your consent.'
+            }
           </p>
         </div>
         <div class="footer-bottom-right">

@@ -35,7 +35,7 @@ const PolitiqueConfidentialite: React.FC = () => {
             <Shield className="w-6 h-6 text-blue-600 mt-1 flex-shrink-0" />
             <div>
               <h3 className="font-semibold text-blue-900 mb-2">
-                ECOFUNDRIVE s'engage à protéger vos données
+                Ce site s'engage à protéger vos données
               </h3>
               <p className="text-blue-800">
                 Conformément au Règlement Général sur la Protection des Données (RGPD) 
@@ -83,25 +83,25 @@ const PolitiqueConfidentialite: React.FC = () => {
               <dl className="space-y-2">
                 <div className="flex">
                   <dt className="font-medium text-gray-600 w-24">Nom :</dt>
-                  <dd>ECOFUNDRIVE</dd>
+                  <dd>Nom de l'entreprise (à compléter)</dd>
                 </div>
                 <div className="flex">
                   <dt className="font-medium text-gray-600 w-24">SIRET :</dt>
-                  <dd>91224469600015</dd>
+                  <dd>À compléter</dd>
                 </div>
                 <div className="flex">
                   <dt className="font-medium text-gray-600 w-24">Email :</dt>
                   <dd>
-                    <a href="mailto:8888vtc@gmail.com" className="text-blue-600 hover:underline">
-                      8888vtc@gmail.com
+                    <a href="mailto:contact@example.com" className="text-blue-600 hover:underline">
+                      contact@example.com
                     </a>
                   </dd>
                 </div>
                 <div className="flex">
                   <dt className="font-medium text-gray-600 w-24">Téléphone :</dt>
                   <dd>
-                    <a href="tel:+33616552811" className="text-blue-600 hover:underline">
-                      +33 6 16 55 28 11
+                    <a href="tel:+33000000000" className="text-blue-600 hover:underline">
+                      +33 0 00 00 00 00
                     </a>
                   </dd>
                 </div>
@@ -113,15 +113,15 @@ const PolitiqueConfidentialite: React.FC = () => {
               <dl className="space-y-2">
                 <div className="flex">
                   <dt className="font-medium text-gray-600 w-24">Nom :</dt>
-                  <dd>David Chemla</dd>
+                  <dd>Responsable du traitement</dd>
                 </div>
                 <div className="flex">
                   <dt className="font-medium text-gray-600 w-24">Qualité :</dt>
-                  <dd>Local Guide Google Niveau 6</dd>
+                  <dd>Délégué à la protection des données (DPO)</dd>
                 </div>
                 <div className="flex">
                   <dt className="font-medium text-gray-600 w-24">Zone :</dt>
-                  <dd>French Riviera</dd>
+                  <dd>France / Union Européenne</dd>
                 </div>
               </dl>
             </div>
@@ -220,9 +220,9 @@ const PolitiqueConfidentialite: React.FC = () => {
               <tbody>
                 {[
                   {
-                    finalite: "Gestion des réservations VTC",
-                    base: "Exécution du contrat",
-                    duree: "3 ans après dernière course"
+                    finalite: "Gestion des formulaires et demandes de contact",
+                    base: "Exécution du contrat ou mesures précontractuelles",
+                    duree: "3 ans après le dernier contact"
                   },
                   {
                     finalite: "Facturation et comptabilité",
@@ -348,7 +348,7 @@ const PolitiqueConfidentialite: React.FC = () => {
           <div className="mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-600 rounded-r-lg">
             <h4 className="font-semibold text-yellow-900 mb-2">Comment exercer vos droits ?</h4>
             <p className="text-yellow-800 mb-3">
-              Envoyez un email à <a href="mailto:8888vtc@gmail.com" className="underline">8888vtc@gmail.com</a> en précisant :
+              Envoyez un email à <a href="mailto:contact@example.com" className="underline">contact@example.com</a> en précisant :
             </p>
             <ul className="list-disc list-inside text-yellow-800 space-y-1">
               <li>Votre nom et adresse email</li>
@@ -368,14 +368,14 @@ const PolitiqueConfidentialite: React.FC = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <h3 className="font-semibold text-gray-900 mb-4">Contact ECOFUNDRIVE</h3>
+              <h3 className="font-semibold text-gray-900 mb-4">Contact du responsable des données</h3>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-blue-600" />
                   <div>
                     <p className="font-medium">Email</p>
-                    <a href="mailto:8888vtc@gmail.com" className="text-blue-600 hover:underline">
-                      8888vtc@gmail.com
+                    <a href="mailto:contact@example.com" className="text-blue-600 hover:underline">
+                      contact@example.com
                     </a>
                   </div>
                 </div>
@@ -383,8 +383,8 @@ const PolitiqueConfidentialite: React.FC = () => {
                   <Phone className="w-5 h-5 text-blue-600" />
                   <div>
                     <p className="font-medium">Téléphone</p>
-                    <a href="tel:+33616552811" className="text-blue-600 hover:underline">
-                      +33 6 16 55 28 11
+                    <a href="tel:+33000000000" className="text-blue-600 hover:underline">
+                      +33 0 00 00 00 00
                     </a>
                   </div>
                 </div>
@@ -447,7 +447,7 @@ const PolitiqueConfidentialite: React.FC = () => {
             <strong>Dernière mise à jour :</strong> {currentDate}
           </p>
           <p className="text-gray-600 mb-2">
-            <strong>Version :</strong> 3.0 - ECOFUNDRIVE V3
+            <strong>Version :</strong> 1.0 - Modèle générique RGPD
           </p>
           <p className="text-sm text-gray-500">
             Cette politique peut être mise à jour. Les modifications importantes 

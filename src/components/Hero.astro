@@ -20,10 +20,10 @@ const {
   title,
   subtitle,
   image = '/images/hero/default-hero.webp',
-  imageAlt = 'VTC Tesla Premium Côte d\'Azur',
+  imageAlt = 'Illustration d\'un site web optimisé pour le SEO',
   showCTA = true,
-  ctaText = 'Réserver maintenant',
-  ctaLink = 'https://wa.me/33616552811',
+  ctaText = 'Lancer le générateur',
+  ctaLink = '/generator',
   loading = 'eager',
   fetchpriority = 'high'
 } = Astro.props;
@@ -58,18 +58,16 @@ const {
             <a 
               href={ctaLink}
               class="hero-cta-primary"
-              target="_blank"
-              rel="noopener noreferrer"
               data-track="hero-cta-primary"
             >
               {ctaText}
             </a>
             <a 
-              href="/fr/tarifs"
+              href="/generator"
               class="hero-cta-secondary"
               data-track="hero-cta-secondary"
             >
-              Voir les tarifs
+              Découvrir le fonctionnement
             </a>
           </div>
         )}
@@ -78,23 +76,23 @@ const {
         <div class="hero-trust">
           <div class="trust-item">
             <span class="trust-icon">⭐</span>
-            <span class="trust-text">5.0/5</span>
-            <span class="trust-label">(26 avis)</span>
+            <span class="trust-text">SEO</span>
+            <span class="trust-label">Contenu optimisé</span>
           </div>
           <div class="trust-item">
-            <span class="trust-icon">🚗</span>
-            <span class="trust-text">100%</span>
-            <span class="trust-label">Tesla</span>
+            <span class="trust-icon">🧠</span>
+            <span class="trust-text">IA</span>
+            <span class="trust-label">Multi-prompts</span>
           </div>
           <div class="trust-item">
-            <span class="trust-icon">🌱</span>
-            <span class="trust-text">0%</span>
-            <span class="trust-label">Émission</span>
+            <span class="trust-icon">🌍</span>
+            <span class="trust-text">Multi</span>
+            <span class="trust-label">Langues</span>
           </div>
           <div class="trust-item">
-            <span class="trust-icon">🕐</span>
-            <span class="trust-text">24/7</span>
-            <span class="trust-label">Disponible</span>
+            <span class="trust-icon">⚡</span>
+            <span class="trust-text">Auto</span>
+            <span class="trust-label">Déploiement</span>
           </div>
         </div>
       </div>

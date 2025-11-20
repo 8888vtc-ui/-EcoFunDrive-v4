@@ -14,15 +14,15 @@ export class SEOFundamentalsManager {
 
   private initializeSEOConfig(): SEOFundamentalConfig {
     return {
-      siteUrl: 'https://ecofundrive.com',
-      defaultTitle: 'ECOFUNDRIVE VTC Tesla - Service Premium Côte d\'Azur',
-      defaultDescription: 'Service VTC 100% Tesla sur Côte d\'Azur. Chauffeurs professionnels, disponibilité 24/7, WhatsApp réservation.',
+      siteUrl: 'https://example.com',
+      defaultTitle: 'Generated SEO Site - Default Title',
+      defaultDescription: 'SEO-optimized page generated automatically with AI and best practices.',
       ogImage: '/images/og-default.jpg',
       twitterCard: 'summary_large_image',
       favicon: '/favicon.ico',
       language: 'fr-FR',
-      author: 'ECOFUNDRIVE',
-      keywords: ['VTC', 'Tesla', 'Nice', 'Monaco', 'Côte d\'Azur', 'transport luxe']
+      author: 'SEO Site Generator',
+      keywords: ['seo', 'site généré', 'contenu', 'référencement']
     };
   }
 
@@ -48,8 +48,8 @@ export class SEOFundamentalsManager {
         page.images.forEach((image: any) => {
           sitemap += `    <image:image>
       <image:loc>${this.config.siteUrl}${image.url}</image:loc>
-      <image:title>${image.title || 'VTC Tesla ECOFUNDRIVE'}</image:title>
-      <image:caption>${image.caption || 'Service VTC premium Tesla'}</image:caption>
+      <image:title>${image.title || 'Image illustrant le contenu du site'}</image:title>
+      <image:caption>${image.caption || 'Illustration pour une page optimisée SEO'}</image:caption>
     </image:image>
 `;
         });
@@ -66,7 +66,7 @@ export class SEOFundamentalsManager {
 
   // 2. ROBOTS.TXT INTELLIGENT
   generateRobotsTxt(): string {
-    return `# ECOFUNDRIVE V3 - Robots.txt
+    return `# SEO GENERATOR - Robots.txt (modèle générique)
 # Autorisé pour tous les crawlers importants
 
 User-agent: *

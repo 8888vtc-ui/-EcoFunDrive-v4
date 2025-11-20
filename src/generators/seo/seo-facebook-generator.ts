@@ -55,54 +55,36 @@ export class SEOWithFacebookGenerator {
 
   private generateBaseSEOContent(keyword: string): any {
     return {
-      title: `VTC Tesla ${keyword} - Service Premium 4.8⭐ | ECOFUNDRIVE`,
-      description: `Service VTC 100% Tesla pour ${keyword}. Note: 4.8/5 ⭐ sur Facebook. Chauffeurs professionnels, disponibilité 24/7. WhatsApp: +33 6 16 55 28 11.`,
+      title: `${keyword} - Service local noté 4.8⭐ | Avis clients`,
+      description: `Service professionnel pour ${keyword}, fortement recommandé par les clients (note moyenne 4.8/5 ⭐ sur les plateformes d'avis).`,
       content: `
-# VTC Tesla ${keyword} - Service Premium
+# ${keyword} - Service local de confiance
 
-🚗 **ECOFUNDRIVE** - Service VTC 100% électrique sur Côte d'Azur
+Entreprise locale spécialisée dans "${keyword}", avec un service client soigné et une forte présence sur les plateformes d'avis.
 
-## ⭐ Service Noté 4.8/5 sur Facebook
-- **500+ avis clients vérifiés**
-- **Chauffeurs professionnels certifiés**
-- **Véhicules Tesla premium**
-- **Disponibilité 24/7**
+## ⭐ Service noté 4.8/5 par les clients
+- Plus de 500 avis clients vérifiés
+- Équipe professionnelle et formée
+- Processus de réservation simplifié
+- Support réactif
 
-## 📍 VTC ${keyword} - Tarifs Fixes
-| Destination | Tarif | Durée |
-|-------------|-------|-------|
-| ${keyword} Centre | 60€ | 15min |
-| Aéroport Nice | 60€ | 20min |
-| Monaco | 80€ | 25min |
-| Cannes | 100€ | 35min |
+## 🎯 Nos principaux avantages
+✅ Service fiable et ponctuel
+✅ Communication claire et transparente
+✅ Processus sécurisé (paiement, données personnelles)
+✅ Expérience utilisateur optimisée (site, mobile, support)
 
-## 🎯 Nos Avantages
-✅ **Flotte 100% Tesla** - Écologique et luxe
-✅ **Chauffeurs multilingues** - Anglais, français, italien
-✅ **WiFi et climatisation** - Inclus
-✅ **Bouteilles eau gratuites** - Service premium
-✅ **Ponctualité garantie** - Ou remboursé
+## 💬 Témoignages clients (exemples)
+"Service impeccable, équipe très professionnelle, je recommande pour ${keyword}."
 
-## 📞 Réservation Immédiate
-- **WhatsApp**: +33 6 16 55 28 11
-- **Disponible 24/7**
-- **Confirmation instantanée**
-- **Paiement sécurisé**
+"Très bon suivi, interface claire et résultats au rendez-vous pour ${keyword}."
 
-## 🌟 Nos Clients Disent
-*"Service exceptionnel, véhicule Tesla impeccable, chauffeur très professionnel"* - 5⭐ Facebook
+## 🔎 Pourquoi mettre en avant vos avis ?
+- Rassurer les nouveaux visiteurs
+- Améliorer le taux de conversion
+- Renforcer votre référencement local
 
-*"Ponctuel, confortable, le meilleur service VTC à Nice!"* - 5⭐ Facebook
-
-## 🎁 Services Additionnels
-- 🍾 **Champagne à bord**: +25€
-- 📱 **WiFi premium**: Inclus
-- 🎵 **Playlist personnalisée**: +10€
-- 🛍️ **Shopping assistant**: +15€
-
----
-**ECOFUNDRIVE VTC Tesla** - Le choix premium pour vos déplacements ${keyword}
-📞 WhatsApp: +33 6 16 55 28 11 | ⭐ 4.8/5 sur Facebook
+Utilisez cette section comme base et adaptez-la avec vos propres chiffres, avis et arguments.
       `,
       structuredData: this.generateStructuredData(keyword),
       metaTags: this.generateMetaTags(keyword)

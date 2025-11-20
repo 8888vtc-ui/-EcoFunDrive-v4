@@ -1,5 +1,5 @@
-// ECOFUNDRIVE V3 - Validateur SEO
-// Analyse et valide le contenu selon les normes SEO 2025
+// Validateur SEO générique V3
+// Analyse et valide le contenu selon les normes SEO 2025 pour tout type de site
 
 import { OpenAI, z, cheerio } from '../types/stubs.js';
 
@@ -40,7 +40,7 @@ export type SEOResultType = z.infer<typeof SEOResultSchema>;
 
 // Client OpenAI pour la validation
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY || '',
 });
 
 // Configuration des règles SEO 2025
@@ -85,7 +85,7 @@ const SEO_VALIDATION_PROMPT = (content: string, keyword: string) => `
 En tant qu'expert SEO technique, analyse ce contenu pour le mot-clé "${keyword}" selon les normes SEO 2025.
 
 CONTEXTE:
-- Contenu pour: Services VTC premium sur la Côte d'Azur
+- Contenu pour: Site web optimisé SEO (secteur générique, B2B ou B2C)
 - Mot-clé principal: "${keyword}"
 - Année: 2025
 
@@ -185,7 +185,7 @@ export async function validateSEO(
     const technicalAnalysis = analyzeTechnicalSEO(content, keyword);
     
     // Analyse sémantique avec GPT-4
-    const semanticAnalysis = await analyzeWithGPT4(content, keyword);
+    const semanticAnalysis = await analyzeSemanticSEO(content, keyword);
     
     // Fusionner les analyses
     const combinedResult = combineAnalyses(technicalAnalysis, semanticAnalysis);
@@ -206,7 +206,7 @@ export async function validateSEO(
 
 // Analyse technique avec Cheerio
 function analyzeTechnicalSEO(content: string, keyword: string) {
-  const $ = cheerio.load(content);
+  const $ = cheerio(content);
   
   const analysis = {
     title: $('title').text() || '',
@@ -232,7 +232,7 @@ function analyzeTechnicalSEO(content: string, keyword: string) {
   $('a').each((_: any, element: any) => {
     const href = $(element).attr('href');
     if (href) {
-      if (href.startsWith('/') || href.includes('ecofundrive')) {
+      if (href.startsWith('/') || href.startsWith('#')) {
         analysis.links.internal++;
       } else if (href.startsWith('http')) {
         analysis.links.external++;
@@ -277,15 +277,24 @@ function combineAnalyses(technical: any, semantic: any) {
   
   // Déterminer la note
   const grade = getGradeFromScore(finalScore);
-  
+
+  const issues = Array.isArray(semantic.issues) ? semantic.issues : [];
+  const recommendations = Array.isArray(semantic.recommendations) ? semantic.recommendations : [];
+  const passedChecks = Array.isArray(semantic.passedChecks) ? semantic.passedChecks : [];
+  const failedChecks = Array.isArray(semantic.failedChecks) ? semantic.failedChecks : [];
+
   return {
     ...semantic,
     score: finalScore,
     grade,
     metrics: {
       ...semantic.metrics,
-      ...technical
-    }
+      ...technical,
+    },
+    issues,
+    recommendations,
+    passedChecks,
+    failedChecks,
   };
 }
 
@@ -355,7 +364,7 @@ function calculateKeywordDensity(content: string, keyword: string): number {
 export function generateImprovementSuggestions(result: SEOResultType): string[] {
   const suggestions: string[] = [];
   
-  result.issues.forEach(issue => {
+  result.issues.forEach((issue: z.infer<typeof SEOResultSchema>['issues'][0]) => {
     if (issue.severity === 'high' || issue.severity === 'critical') {
       suggestions.push(issue.solution);
     }

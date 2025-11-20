@@ -1,0 +1,31 @@
+{
+  "semanticRelevance": 80,
+  "readabilityScore": 75,
+  "keywordVariations": [],
+  "contentGaps": [],
+  "recommendations": [],
+  "metrics": {
+    "title": "",
+    "metaDescription": "",
+    "headings": {
+      "h1": 0,
+      "h2": 0,
+      "h3": 0
+    },
+    "images": {
+      "total": 0,
+      "withAlt": 0
+    },
+    "links": {
+      "internal": 0,
+      "external": 0
+    },
+    "wordCount": 594,
+    "keywordDensity": 0
+  },
+  "score": 50,
+  "grade": "E",
+  "issues": [],
+  "passedChecks": [],
+  "failedChecks": []
+}

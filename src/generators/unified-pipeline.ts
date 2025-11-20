@@ -97,14 +97,14 @@ export class UnifiedPipeline {
     // Simulation génération contenu web
     return {
       keyword,
-      title: `VTC Tesla ${keyword} - Service Premium`,
-      description: `Service VTC Tesla spécialisé ${keyword} avec chauffeurs professionnels`,
-      content: `Contenu complet optimisé SEO pour ${keyword}...`,
-      sections: ['hero', 'services', 'pricing', 'testimonials', 'cta'],
+      title: `${keyword} - Page optimisée SEO`,
+      description: `Page générée automatiquement pour le mot-clé "${keyword}", avec contenu optimisé pour le référencement.`,
+      content: `Contenu complet optimisé SEO pour ${keyword} (simulation de génération IA).`,
+      sections: ['hero', 'sections', 'faq', 'cta'],
       seo: {
-        title: `VTC ${keyword} | Tesla Premium | ECOFUNDRIVE`,
-        description: `Réservez votre VTC Tesla pour ${keyword}. Service premium, disponibilité 24/7.`,
-        keywords: [keyword, 'VTC', 'Tesla', 'transport luxe']
+        title: `${keyword} | Contenu optimisé SEO`,
+        description: `Contenu généré automatiquement pour ${keyword}, conforme aux bonnes pratiques SEO on-page.`,
+        keywords: [keyword, 'seo', 'contenu généré', 'site web']
       }
     };
   }
